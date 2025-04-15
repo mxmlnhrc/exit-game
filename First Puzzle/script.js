@@ -77,19 +77,19 @@ function handleCommand(cmd) {
                 }
                 break;
             case cmd.startsWith('rot -string'):
-                console.log(cmd)
                 const rotString = cmd.replace('rot -string', '').trim();
-                console.log(rotString.length);
-                if (rotString.length > 0 && !NaN) {
+                if (rotString.length > 0 && !NaN && rotString) {
                     rotIn = rotString;
-                    const response = document.createElement('div');
-                    response.textContent = `String wurde auf "${rotIn}" gesetzt.`;
-                    output.appendChild(response);
-                } else {
-                    const error = document.createElement('div');
-                    error.textContent = 'Ungültiger String.';
-                    output.appendChild(error);
+                    const rotInText = document.createElement('div');
+                    rotInText.textContent = `String wurde auf "${rotIn}" gesetzt.`;
+                    output.appendChild(rotInText);
                 }
+                 else {
+                    const rotStringError = document.createElement('div');
+                    rotStringError.textContent = 'Ungültiger String.';
+                    output.appendChild(rotStringError);
+                }
+                break;
 
             case 'story':
                 output.innerHTML = '';
