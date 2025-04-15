@@ -1,6 +1,6 @@
 const coms = {
-    story:`
-Dein U-Boot fängt ab zu sinken. Du bist als einziger noch bei Bewusstsein.
+    story:
+`Dein U-Boot fängt ab zu sinken. Du bist als einziger noch bei Bewusstsein.
 Du hast zwanzig Minuten Zeit um das dich und deine Crew sicher an die Oberfläche zu bringen.
 Aber wo fängst du an? Am besten Logst du dich zunächst in das Interface ein und siehst ob dir dann etwas bekannt vorkommt.
 
@@ -14,8 +14,7 @@ Aber wo fängst du an? Am besten Logst du dich zunächst in das Interface ein un
                                              |___/ 
                                              
 Wenn du eine Liste aller Befehle brauchst, tippe 'help'
-
-`,
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -`,
     welcome:
     `
   ___                 _   _          ___                        
@@ -50,13 +49,13 @@ Capt. ~ "Tag 9: Routinewartung der Systeme abgeschlossen, alles in Ordnung."
 Capt. ~ "Tag 10: Wir nähern uns unserem Ziel, die Stimmung an Bord ist gut."`,
     help:
 `    Verfügbare Befehle:
-    help:           Zeigt diese Liste an
-    log:            Zeigt das Logbuch des Kapitäns an
-    rot:            Lässt einen Rotationscipher laufen
-     rot -shift     Setzt einen Shift für den Rotationscipher (ganz Zahl)
-     rot -string:   Setzt einen String in den Rotationscipher
-     rot -info:     Gibt deinen gewählten Shift und String für den Rotationscipher aus
-    clear:          Löscht den Bildschirm aber behält alle Variablen
-    story:          Zeigt die Hintergrundgeschichte an
+    help:                   Zeigt diese Liste an
+    log:                    Zeigt das Logbuch des Kapitäns an
+    rot:                    Lässt einen Rotationscipher laufen
+     rot -shift <shift>:    Setzt einen Shift für den Rotationscipher (ganz Zahl)
+     rot -string <string>:  Setzt einen String in den Rotationscipher
+     rot -info:             Gibt deinen gewählten Shift und String für den Rotationscipher aus
+    clear:                  Löscht den Bildschirm aber behält alle Variablen
+    story:                  Zeigt die Hintergrundgeschichte an
     `,
 }
