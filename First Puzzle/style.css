@@ -41,3 +41,7 @@ input#commandInput {
     outline: none;
     flex-grow: 1;
 }
+
+.submarine-art{
+    color: #5e78d3;
+}

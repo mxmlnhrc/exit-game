@@ -36,7 +36,8 @@ function handleCommand(cmd) {
         if (cmd === 'clear') {
             output.innerHTML = '';
             const line = document.createElement('pre');
-            line.textContent = coms.welcome;
+            line.className = 'submarine-art';
+            line.textContent = coms.submarine;
             output.appendChild(line);
             return;
         }
