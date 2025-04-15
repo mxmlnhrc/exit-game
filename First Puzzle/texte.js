@@ -3,7 +3,6 @@ const coms = {
 Dein U-Boot fängt ab zu sinken. Du bist als einziger noch bei Bewusstsein.
 Du hast zwanzig Minuten Zeit um das dich und deine Crew sicher an die Oberfläche zu bringen.
 Aber wo fängst du an? Am besten Logst du dich zunächst in das Interface ein und siehst ob dir dann etwas bekannt vorkommt.
-Wenn du eine Liste aller Befehle brauchst, tippe 'help'
 
  __      ___      _   ______       __      _       
  \\ \\    / (_)    | | |  ____|     / _|    | |      
@@ -13,6 +12,9 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
      \\/   |_|\\___|_| |______|_|  |_| \\___/|_|\\__, |
                                               __/ |
                                              |___/ 
+                                             
+Wenn du eine Liste aller Befehle brauchst, tippe 'help'
+
 `,
     welcome:
     `
@@ -32,5 +34,7 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
    ,--------'    '--------..._,.
   (                          _--+
    \`----------------------''' \`'
+> Gebe 'help' ein falls du nicht weiter weißt.
+
     `,
 }
