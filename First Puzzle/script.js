@@ -48,8 +48,8 @@ function handleCommand(cmd) {
                 output.appendChild(helpText);
                 break;
             case 'log':
-                const logText = document.createElement('div');
-                logText.textContent = commands.log;
+                const logText = document.createElement('pre');
+                logText.textContent = coms.logbuch;
                 output.appendChild(logText);
                 break;
             case 'rot':

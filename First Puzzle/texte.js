@@ -37,4 +37,15 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
 > Gebe 'help' ein falls du nicht weiter weißt.
 
     `,
+    logbuch:
+`Capt. ~ "Tag 1: Die Crew ist an Bord und die Vorräte sind verstaut. Wir legen ab."
+Capt. ~ "Tag 2: Das Wetter ist ruhig, die Navigation verläuft planmäßig."
+Capt. ~ "Tag 3: Ein kleiner technischer Defekt an der Steuerung wurde behoben."
+Capt. ~ "Tag 4: Ein Sturm zieht auf, wir bereiten uns auf schwere See vor."
+Capt. ~ "Tag 5: Der Sturm ist vorüber, keine Schäden am Boot."
+Capt. ~ "Tag 6: Ein ungewöhnliches Signal wurde empfangen, wir untersuchen es."
+Capt. ~ "Tag 7: Die Crew bleibt motiviert, die Maschinen laufen einwandfrei."
+Capt. ~ "Tag 8: Ein Wal wurde gesichtet, die Crew war begeistert."
+Capt. ~ "Tag 9: Routinewartung der Systeme abgeschlossen, alles in Ordnung."
+Capt. ~ "Tag 10: Wir nähern uns unserem Ziel, die Stimmung an Bord ist gut."`,
 }
