@@ -1,0 +1,43 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    cursor: none;
+}
+
+#terminal {
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#output {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    margin-right: 5px;
+}
+
+input#commandInput {
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-size: 1em;
+    outline: none;
+    flex-grow: 1;
+}
