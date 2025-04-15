@@ -9,6 +9,7 @@ const commands = {
 
 let shiftIn;
 let rotIn;
+let password;
 
 input.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
@@ -100,8 +101,21 @@ function handleCommand(cmd) {
                     output.appendChild(rotStringError);
                 }
                 break;
-
-            case 'story':
+            case cmd.startsWith('login -pw'):
+                const loginPw = cmd.replace('login -pw', '').trim();
+                if (loginPw.length > 0 && !NaN && loginPw && loginPw !== 'undefined' && loginPw !== 'null' && /^[a-z]+$/.test(loginPw)) {
+                    password = loginPw;
+                    const loginText = document.createElement('div');
+                    loginText.textContent = `String wurde auf "${password}" gesetzt.`;
+                    output.appendChild(loginText);
+                }
+                else {
+                    const loginFormalError = document.createElement('div');
+                    loginFormalError.textContent = 'Üngültiges Passwort.';
+                    output.appendChild(loginFormalError);
+                }
+                break;
+            case 'story' === cmd:
                 output.innerHTML = '';
                 const storyText = document.createElement('pre');
                 storyText.textContent = commands.story;
