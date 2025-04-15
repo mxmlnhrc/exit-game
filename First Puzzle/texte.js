@@ -48,4 +48,15 @@ Capt. ~ "Tag 7: Die Crew bleibt motiviert, die Maschinen laufen einwandfrei."
 Capt. ~ "Tag 8: Ein Wal wurde gesichtet, die Crew war begeistert."
 Capt. ~ "Tag 9: Routinewartung der Systeme abgeschlossen, alles in Ordnung."
 Capt. ~ "Tag 10: Wir nähern uns unserem Ziel, die Stimmung an Bord ist gut."`,
+    help:
+`    Verfügbare Befehle:
+    help:           Zeigt diese Liste an
+    log:            Zeigt das Logbuch des Kapitäns an
+    rot:            Lässt einen Rotationscipher laufen
+     rot -shift     Setzt einen Shift für den Rotationscipher (ganz Zahl)
+     rot -string:   Setzt einen String in den Rotationscipher
+     rot -info:     Gibt deinen gewählten Shift und String für den Rotationscipher aus
+    clear:          Löscht den Bildschirm aber behält alle Variablen
+    story:          Zeigt die Hintergrundgeschichte an
+    `,
 }

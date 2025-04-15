@@ -3,11 +3,12 @@ const output = document.getElementById('output');
 
 const commands = {
     help: "Verfügbare Befehle: help, log, rot, clear, story",
-    log: "This is a web-based terminal made with HTML/CSS/JS." ,
-    clear: "clear",
     rot: "Rotationscipher",
     story: coms.story
 };
+
+var shiftIn;
+var rotIn;
 
 input.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
@@ -43,8 +44,8 @@ function handleCommand(cmd) {
         }
         switch (cmd.toLowerCase()) {
             case 'help':
-                const helpText = document.createElement('div');
-                helpText.textContent = commands.help;
+                const helpText = document.createElement('pre');
+                helpText.textContent = coms.help;
                 output.appendChild(helpText);
                 break;
             case 'log':
