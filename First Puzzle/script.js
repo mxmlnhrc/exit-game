@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     output.appendChild(infoText);
 });
 
+
 function handleCommand(cmd) {
     const line = document.createElement('div');
     line.textContent = `> ${cmd}`;
@@ -104,10 +105,16 @@ function handleCommand(cmd) {
             case cmd.startsWith('login -pw'):
                 const loginPw = cmd.replace('login -pw', '').trim();
                 if (loginPw.length > 0 && !NaN && loginPw && loginPw !== 'undefined' && loginPw !== 'null' && /^[a-z]+$/.test(loginPw)) {
-                    password = loginPw;
-                    const loginText = document.createElement('div');
-                    loginText.textContent = `String wurde auf "${password}" gesetzt.`;
-                    output.appendChild(loginText);
+                    if (checkHash(loginPw) === true) {
+                        const loginText = document.createElement('button');
+                        loginText.textContent = '/> Einloggen';
+                        output.appendChild(loginText);
+                    } else {
+                        const loginText = document.createElement('div');
+                        loginText.textContent = 'Ungültiges Passwort.';
+                        output.appendChild(loginText);
+                    }
+
                 }
                 else {
                     const loginFormalError = document.createElement('div');
