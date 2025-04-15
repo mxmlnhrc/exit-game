@@ -1,0 +1,68 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    cursor: none;
+}
+
+button {
+    tab-index: 0;
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    font-size: 20pt;
+    background-color: #000;
+    color: #00FF00;
+    border: none;
+    margin: 0;
+    padding: 10pt 0;
+    position: relative;
+}
+button:focus {
+    outline: none;
+    text-decoration: underline;
+    text-decoration-color: #00FF00;
+}
+
+#terminal {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    padding: 20px;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#output {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.input-line {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    font-family: 'Courier New', Consolas, Monaco, monospace;
+    margin-right: 5px;
+}
+
+input#commandInput {
+    background: none;
+    border: none;
+    color: #fff;
+    font-family: monospace;
+    font-size: 1em;
+    outline: none;
+    flex-grow: 1;
+}
+
+.submarine-art{
+    color: #5e78d3;
+}
