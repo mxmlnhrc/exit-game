@@ -78,7 +78,7 @@ function handleCommand(cmd) {
                 break;
             case cmd.startsWith('rot -string'):
                 const rotString = cmd.replace('rot -string', '').trim();
-                if (rotString.length > 0 && !NaN && rotString) {
+                if (rotString.length > 0 && !NaN && rotString && rotString !== 'undefined' && rotString !== 'null' && /^[a-z]+$/.test(rotString)) {
                     rotIn = rotString;
                     const rotInText = document.createElement('div');
                     rotInText.textContent = `String wurde auf "${rotIn}" gesetzt.`;
