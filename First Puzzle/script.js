@@ -32,6 +32,7 @@ function handleCommand(cmd) {
     const line = document.createElement('div');
     line.textContent = `> ${cmd}`;
     output.appendChild(line);
+    cmd = cmd.toLowerCase();
 
     if (cmd) {
         if (cmd === 'clear') {
@@ -55,7 +56,16 @@ function handleCommand(cmd) {
                 break;
             case 'rot' === cmd:
                 const rotText = document.createElement('div');
-                rotText.textContent = commands.rot;
+                if (rotIn.length > 0 && !NaN && rotIn && rotIn !== 'undefined' && rotIn !== 'null' && /^[a-z]+$/.test(rotIn)){
+                    if (shiftIn !== 0 && shiftIn !== undefined && shiftIn !== null) {
+                        rotText.textContent = `Vershobener Text: ${rotateString(rotIn, shiftIn)}`;
+                    }else{
+                        rotText.textContent = 'Bitte gebe einen Shift ein. Verwende: rot -shift <shift>';
+                    }
+                } else {
+                    rotText.textContent = 'Bitte gebe einen String ein. Verwende: rot -string <string>';
+                }
+
                 output.appendChild(rotText);
                 break;
             case 'rot -info' === cmd:

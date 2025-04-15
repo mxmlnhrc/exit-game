@@ -1,6 +1,6 @@
 const coms = {
-    story:`
-Dein U-Boot fängt ab zu sinken. Du bist als einziger noch bei Bewusstsein.
+    story:
+`Dein U-Boot fängt ab zu sinken. Du bist als einziger noch bei Bewusstsein.
 Du hast zwanzig Minuten Zeit um das dich und deine Crew sicher an die Oberfläche zu bringen.
 Aber wo fängst du an? Am besten Logst du dich zunächst in das Interface ein und siehst ob dir dann etwas bekannt vorkommt.
 
@@ -14,8 +14,7 @@ Aber wo fängst du an? Am besten Logst du dich zunächst in das Interface ein un
                                              |___/ 
                                              
 Wenn du eine Liste aller Befehle brauchst, tippe 'help'
-
-`,
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -`,
     welcome:
     `
   ___                 _   _          ___                        
