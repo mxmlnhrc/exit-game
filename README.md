@@ -20,5 +20,9 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
 ## Erstes Puzzle
 Erstes Puzzle ohne Anbindung an den großen Teil
 ### Wie kann ich die Demo spielen?
-1. Klone das Repository/runterladen
-2. dann einfach auf in `First Puzzle` gehen und die `index.html` öffnen
+1. Klone das Repository/runterladen.
+2. Dann einfach auf in `First Puzzle` gehen und die `index.html` öffnen.
+3. Die Daten sind
+   - rot -shift -3
+   - rot -string kdoor
+   - login -pw dasisteintest
