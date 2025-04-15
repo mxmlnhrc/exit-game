@@ -55,6 +55,7 @@ Capt. ~ "Tag 10: Wir nähern uns unserem Ziel, die Stimmung an Bord ist gut."`,
      rot -shift <shift>:    Setzt einen Shift für den Rotationscipher (ganz Zahl)
      rot -string <string>:  Setzt einen String in den Rotationscipher
      rot -info:             Gibt deinen gewählten Shift und String für den Rotationscipher aus
+    login -pw <string>:     Log dich in das Interface ein
     clear:                  Löscht den Bildschirm aber behält alle Variablen
     story:                  Zeigt die Hintergrundgeschichte an
     `,

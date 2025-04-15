@@ -9,6 +9,7 @@ const commands = {
 
 let shiftIn;
 let rotIn;
+let password;
 
 input.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     infoText.textContent = commands.story;
     output.appendChild(infoText);
 });
+
 
 function handleCommand(cmd) {
     const line = document.createElement('div');
@@ -100,8 +102,27 @@ function handleCommand(cmd) {
                     output.appendChild(rotStringError);
                 }
                 break;
+            case cmd.startsWith('login -pw'):
+                const loginPw = cmd.replace('login -pw', '').trim();
+                if (loginPw.length > 0 && !NaN && loginPw && loginPw !== 'undefined' && loginPw !== 'null' && /^[a-z]+$/.test(loginPw)) {
+                    if (checkHash(loginPw) === true) {
+                        const loginText = document.createElement('button');
+                        loginText.textContent = '/> Einloggen';
+                        output.appendChild(loginText);
+                    } else {
+                        const loginText = document.createElement('div');
+                        loginText.textContent = 'Ungültiges Passwort.';
+                        output.appendChild(loginText);
+                    }
 
-            case 'story':
+                }
+                else {
+                    const loginFormalError = document.createElement('div');
+                    loginFormalError.textContent = 'Üngültiges Passwort.';
+                    output.appendChild(loginFormalError);
+                }
+                break;
+            case 'story' === cmd:
                 output.innerHTML = '';
                 const storyText = document.createElement('pre');
                 storyText.textContent = commands.story;
