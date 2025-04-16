@@ -15,6 +15,6 @@ def read_root(q: str = Query(default="")):
 @app.post("/check-pw")
 def check_pw(password: str = Form(...)):
     if password == passwordCheck:
-        return JSONResponse(content={"message": "Passwort ist richtig"}, status_code=201)
+        return JSONResponse(content={"link": "127.0.0.1:8000/q="+password}, status_code=201)
     else:
         return HTTPException(status_code=400, detail="Password is incorrect!")
