@@ -108,6 +108,7 @@ function handleCommand(cmd) {
                     if (checkHash(loginPw) === true) {
                         const loginText = document.createElement('button');
                         loginText.textContent = '/> Einloggen';
+                        loginText.onclick = () => window.location.href = 'https://example.com';
                         output.appendChild(loginText);
                     } else {
                         const loginText = document.createElement('div');
