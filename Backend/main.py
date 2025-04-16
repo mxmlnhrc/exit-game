@@ -1,6 +1,9 @@
 from fastapi import FastAPI, Query, Form, HTTPException
 from fastapi.responses import JSONResponse
 
+#Eigene Module
+from controller import initialize
+
 app = FastAPI()
 
 passwordCheck = "dasisteintest"
@@ -8,6 +11,7 @@ passwordCheck = "dasisteintest"
 @app.get("/")
 def read_root(q: str = Query(default="")):
     if q == passwordCheck:
+        initialize()
         return {"message": "Willkommen bei FastAPI!", "query": q}
     else:
         return {"message": "Sorry aber das ist wohl nicht die antwort"}
@@ -15,6 +19,7 @@ def read_root(q: str = Query(default="")):
 @app.post("/check-pw")
 def check_pw(password: str = Form(...)):
     if password == passwordCheck:
+        initialize()
         return JSONResponse(content={"link": "127.0.0.1:8000/q="+password}, status_code=201)
     else:
         return HTTPException(status_code=400, detail="Password is incorrect!")
