@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query, Form, HTTPException
+from fastapi import FastAPI, Query, Form, HTTPException, Header
 from fastapi.responses import JSONResponse
 
 #Eigene Module
@@ -8,18 +8,19 @@ app = FastAPI()
 
 passwordCheck = salt_string(str(885))
 
+#Der Hash muss immer als Identifier übergeben werden
 @app.get("/")
-def read_root(q: str = Query(default="")):
-    if q == passwordCheck:
+def read_root(hash_id: str = Header(default=None)):
+    if hash_id == passwordCheck:
         initialize()
-        return {"message": "Willkommen bei FastAPI!", "query": q}
+        return JSONResponse(content={"message": "Willkomen"})
     else:
-        return {"message": "Sorry aber das ist wohl nicht die antwort"}
+        return HTTPException(status_code=404, detail="Hash ID ist falsch!")
 
 @app.post("/check-pw")
 def check_pw(password: str = Form(...)):
     if salt_string(password) == passwordCheck:
         initialize()
-        return JSONResponse(content={"link": "127.0.0.1:8000/q="+password}, status_code=201)
+        return JSONResponse(content={"hash": salt_string(password)}, status_code=201)
     else:
         return HTTPException(status_code=400, detail="Password is incorrect!")
