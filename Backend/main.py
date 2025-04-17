@@ -2,11 +2,11 @@ from fastapi import FastAPI, Query, Form, HTTPException
 from fastapi.responses import JSONResponse
 
 #Eigene Module
-from controller import initialize
+from controller import initialize, salt_string
 
 app = FastAPI()
 
-passwordCheck = "dasisteintest"
+passwordCheck = salt_string(str(885))
 
 @app.get("/")
 def read_root(q: str = Query(default="")):
@@ -18,7 +18,7 @@ def read_root(q: str = Query(default="")):
 
 @app.post("/check-pw")
 def check_pw(password: str = Form(...)):
-    if password == passwordCheck:
+    if salt_string(password) == passwordCheck:
         initialize()
         return JSONResponse(content={"link": "127.0.0.1:8000/q="+password}, status_code=201)
     else:

@@ -108,6 +108,8 @@ function handleCommand(cmd) {
                     if (checkHash(loginPw) === true) {
                         const loginText = document.createElement('button');
                         loginText.textContent = '/> Einloggen';
+                        // POST-Request zur Verifizierung des Passworts
+                        // Richtiges Passwort => Weiterleitungslink
                         loginText.onclick = () => window.location.href = 'https://example.com';
                         output.appendChild(loginText);
                     } else {
