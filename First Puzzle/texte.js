@@ -37,14 +37,22 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
 
     `,
     logbuch:
-`I ~ „Ich beobachte eine interessante Strömung – wir halten Kurs zur Analyse.“
-V ~ „Vorbereitungen für das Abtauchen auf 400 Meter sind abgeschlossen.“
-P ~ „Position wurde aktualisiert – wir bewegen uns entlang der geplanten Route.“
-O ~ „Oberflächenbedingungen zeigen keine besonderen Auffälligkeiten.“
-D ~ „Die Kommunikation mit der Basis wurde erfolgreich getestet.“
-G ~ „Geringe Aktivität auf den Sonarsensoren – Umgebung bleibt stabil.“
-P ~ „Periskop zeigt eine klare Wasseroberfläche – wir setzen unsere Erkundung fort.“
-N ~ „Neue Meeresformationen wurden identifiziert – Daten werden protokolliert.“
+`Capt.> ~ „Ich beobachte eine interessante Strömung – wir halten Kurs zur Analyse.“
+Capt.> ~ „Vorbereitungen für das Abtauchen auf 400 Meter sind abgeschlossen.“
+Capt.> ~ „Position wurde aktualisiert – wir bewegen uns entlang der geplanten Route.“
+Capt.> ~ „Oberflächenbedingungen zeigen keine besonderen Auffälligkeiten.“
+Capt.> ~ „Die Kommunikation mit der Basis wurde erfolgreich getestet.“
+Capt.> ~ „Geringe Aktivität auf den Sonarsensoren – Umgebung bleibt stabil.“
+Capt.> ~ „Periskop zeigt eine klare Wasseroberfläche – wir setzen unsere Erkundung fort.“
+Capt.> ~ „Neue Meeresformationen wurden identifiziert – Daten werden protokolliert.“
+
+Sys.err.log$START>>>    <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+                        |           „Anomalie erkannt:                   |
+                        |   Datenabweichung um fünf                      |
+                        |            Einheiten rückwärts.                |
+                        |   Anfangszeichen der letzten Berichte könnten  |    
+                        |           entscheidend sein.“                  |
+                        <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>  <<<Sys.err.log$END
 `,
     help:
 `    Verfügbare Befehle:
