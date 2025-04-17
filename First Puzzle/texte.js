@@ -37,16 +37,23 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
 
     `,
     logbuch:
-`Capt. ~ "Tag 1: Die Crew ist an Bord und die Vorräte sind verstaut. Wir legen ab."
-Capt. ~ "Tag 2: Das Wetter ist ruhig, die Navigation verläuft planmäßig."
-Capt. ~ "Tag 3: Ein kleiner technischer Defekt an der Steuerung wurde behoben."
-Capt. ~ "Tag 4: Ein Sturm zieht auf, wir bereiten uns auf schwere See vor."
-Capt. ~ "Tag 5: Der Sturm ist vorüber, keine Schäden am Boot."
-Capt. ~ "Tag 6: Ein ungewöhnliches Signal wurde empfangen, wir untersuchen es."
-Capt. ~ "Tag 7: Die Crew bleibt motiviert, die Maschinen laufen einwandfrei."
-Capt. ~ "Tag 8: Ein Wal wurde gesichtet, die Crew war begeistert."
-Capt. ~ "Tag 9: Routinewartung der Systeme abgeschlossen, alles in Ordnung."
-Capt. ~ "Tag 10: Wir nähern uns unserem Ziel, die Stimmung an Bord ist gut."`,
+`Capt.> ~ „Ich beobachte eine interessante Strömung – wir halten Kurs zur Analyse.“
+Capt.> ~ „Vorbereitungen für das Abtauchen auf 400 Meter sind abgeschlossen.“
+Capt.> ~ „Position wurde aktualisiert – wir bewegen uns entlang der geplanten Route.“
+Capt.> ~ „Oberflächenbedingungen zeigen keine besonderen Auffälligkeiten.“
+Capt.> ~ „Die Kommunikation mit der Basis wurde erfolgreich getestet.“
+Capt.> ~ „Geringe Aktivität auf den Sonarsensoren – Umgebung bleibt stabil.“
+Capt.> ~ „Periskop zeigt eine klare Wasseroberfläche – wir setzen unsere Erkundung fort.“
+Capt.> ~ „Neue Meeresformationen wurden identifiziert – Daten werden protokolliert.“
+
+Sys.err.log$START>>>    <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
+                        |           „Anomalie erkannt:                   |
+                        |   Datenabweichung um fünf                      |
+                        |            Einheiten rückwärts.                |
+                        |   Anfangszeichen der letzten Berichte könnten  |    
+                        |           entscheidend sein.“                  |
+                        <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>  <<<Sys.err.log$END
+`,
     help:
 `    Verfügbare Befehle:
     help:                   Zeigt diese Liste an
@@ -59,4 +66,11 @@ Capt. ~ "Tag 10: Wir nähern uns unserem Ziel, die Stimmung an Bord ist gut."`,
     clear:                  Löscht den Bildschirm aber behält alle Variablen
     story:                  Zeigt die Hintergrundgeschichte an
     `,
+    credit:
+`Credits:
+Grafiken: Eren Erdomus
+Puzzles: Ray-Duncan Michel & Jonas Stengel
+Story-Design: Ray-Duncan Michel & Jonas Stengel
+Programmierung | Tech-Stack | Integration: Maxmilian Henrici
+`,
 }
