@@ -66,4 +66,11 @@ Sys.err.log$START>>>    <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
     clear:                  Löscht den Bildschirm aber behält alle Variablen
     story:                  Zeigt die Hintergrundgeschichte an
     `,
+    credit:
+`Credits:
+Grafiken: Eren Erdomus
+Puzzles: Ray-Duncan Michel & Jonas Stengel
+Story-Design: Ray-Duncan Michel & Jonas Stengel
+Programmierung | Tech-Stack | Integration: Maxmilian Henrici
+`,
 }
