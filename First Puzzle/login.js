@@ -6,5 +6,5 @@ function hashSum(input) {
 function checkHash(input) {
     // Berechnet den Hash des Eingabestrings und vergleicht ihn mit dem verschlüsselten Wert
     const inputHash = hashSum(input);
-    return inputHash === 1412; //beispiel -> 1412 = dasisteintest
+    return inputHash === 885; //beispiel -> 1412 = dasisteintest
 }

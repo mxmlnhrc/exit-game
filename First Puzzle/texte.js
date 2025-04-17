@@ -28,7 +28,7 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
     `,
     submarine: `
  ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-               ___
+              ___
              /   |  
    ,--------'    '--------..._,.
   (                          _--+
