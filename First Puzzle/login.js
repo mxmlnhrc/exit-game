@@ -10,7 +10,7 @@ function checkHash(input) {
 }
 
 function sendPostRequest(data) {
-    fetch("http://127.0.0.1:8000/check", {
+    fetch("http://127.0.0.1:8000/check-pw", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -26,7 +26,9 @@ function sendPostRequest(data) {
         .then(result => {
             if (result.success) {
                 console.log('Bestätigung erhalten:', result.uid);
-                // Weiterleitung oder andere Aktionen
+                sessionStorage.setItem('uid', result.uid);
+                // Weiterleitung zu einer Seite in einem anderen Ordner
+                window.location.href = '../MainGame/index.html';
             } else {
                 console.log('Ablehnung erhalten:', result.message);
             }
@@ -35,6 +37,3 @@ function sendPostRequest(data) {
             console.error('Fehler:', error);
         });
 }
-
-const data = { password: '885' };
-sendPostRequest(data);

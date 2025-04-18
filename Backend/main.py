@@ -21,23 +21,14 @@ passwordCheck = salt_string(str(885))
 
 #Der Hash muss immer als Identifier übergeben werden
 @app.get("/")
-def read_root(hash_id: str = Header(default=None)):
-    if hash_id == passwordCheck:
-        initialize()
+def read_root(uid: str = Header(default=None)):
+    if uid == passwordCheck:
         return JSONResponse(content={"message": "Willkomen"})
     else:
-        return HTTPException(status_code=404, detail="Hash ID ist falsch!")
+        return HTTPException(status_code=404, detail="UID ist falsch!")
 
 @app.post("/check-pw")
-def check_pw(password: str = Form(...)):
-    if salt_string(password) == passwordCheck:
-        initialize()
-        return JSONResponse(content={"hash": salt_string(password)}, status_code=201)
-    else:
-        return HTTPException(status_code=400, detail="Password is incorrect!")
-
-@app.post("/check")
-async def check(request: Request):
+async def check_pw(request: Request):
     data = await request.json()
     if salt_string(data["password"]) == passwordCheck:
         initialize()
