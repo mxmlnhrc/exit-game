@@ -36,5 +36,5 @@ function sendPostRequest(data) {
         });
 }
 
-const data = { password: 'deinPasswort' };
+const data = { password: '885' };
 sendPostRequest(data);

@@ -39,5 +39,8 @@ def check_pw(password: str = Form(...)):
 @app.post("/check")
 async def check(request: Request):
     data = await request.json()
-    print(data["password"])
-    return {"success": True, "uid": salt_string(data["password"])}
+    if salt_string(data["password"]) == passwordCheck:
+        initialize()
+        return JSONResponse(content={"success": True, "uid": salt_string(data["password"])}, status_code=201)
+    else:
+        return JSONResponse(content={"success": False}, status_code=400)
