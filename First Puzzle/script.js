@@ -110,7 +110,7 @@ function handleCommand(cmd) {
                         loginText.textContent = '/> Einloggen';
                         // POST-Request zur Verifizierung des Passworts
                         // Richtiges Passwort => Weiterleitungslink
-                        loginText.onclick = () => window.location.href = 'https://example.com';
+                        loginText.onclick = () => sendPostRequest({'password': String(hashSum(loginPw))});
                         output.appendChild(loginText);
                     } else {
                         const loginText = document.createElement('div');
