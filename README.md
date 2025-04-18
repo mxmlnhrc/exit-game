@@ -1,4 +1,4 @@
-# Eixt Game Code Base
+# Exit Game Code Base
 Hier ist die Idee und die grundlegende Struktur niedergelegt
 
 ## Idee 💡
