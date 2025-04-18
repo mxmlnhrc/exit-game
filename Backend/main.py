@@ -1,10 +1,21 @@
-from fastapi import FastAPI, Query, Form, HTTPException, Header
+from fastapi import FastAPI, Query, Form, HTTPException, Header, Request
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 #Eigene Module
 from controller import initialize, salt_string
 
 app = FastAPI()
+
+#CORS Config
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 passwordCheck = salt_string(str(885))
 
@@ -24,3 +35,9 @@ def check_pw(password: str = Form(...)):
         return JSONResponse(content={"hash": salt_string(password)}, status_code=201)
     else:
         return HTTPException(status_code=400, detail="Password is incorrect!")
+
+@app.post("/check")
+async def check(request: Request):
+    data = await request.json()
+    print(data["password"])
+    return {"success": True, "uid": salt_string(data["password"])}
