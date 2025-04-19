@@ -7,38 +7,44 @@
 </head>
 <body>
 
-<img src="resources/img/image.png" usemap="#image-map" alt="">
-<map name="map1">
-    <area shape="rect" coords="20,20,120,120"
-          href="javascript:void(0)"
-          onclick="loadOverlay('A')">
-    <area shape="circle" coords="200,100,50"
-          href="javascript:void(0)"
-          onclick="loadOverlay('B')">
-</map>
+<div id="image-container">
+    <img src="resources/img/image.png" usemap="#image-map" alt="Cockpit des UBootes" id="cockpit">
+    <map name="image-map">
+        <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" title="Koordinaten" coords="909,756,753,578" shape="rect">
+    </map>
+</div>
 
-<map name="image-map">
-    <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" id="cockpit" title="Koordinaten" coords="909,756,753,578" shape="rect">
-</map>
+<!-- Overlay Container -->
+<div id="overlay-container" onClick="closeOverlay()">
+    <div class="overlay" id="current-overlay" onClick="event.stopPropagation()"></div>
+</div>
 
-<div id="overlay-container"></div>
 
+<script src="resources/js/imageMapResizer.min.js"></script>
 <script>
     function loadOverlay(key) {
         fetch(`resources/overlays/overlay-${key}.html`)
             .then(r => r.text())
             .then(html => {
-                // vorhandenes Overlay entfernen
-                const c = document.getElementById('overlay-container');
-                c.innerHTML = html;
+                const overlayContainer = document.getElementById('overlay-container');
+                const imageContainer = document.getElementById('image-container');
+                overlayContainer.classList.add('active');
+                imageContainer.classList.add('inactive-map');
+                // Nur den Inhalt der .overlay-Div aktualisieren
+                const overlayContent = overlayContainer.querySelector('.overlay');
+                overlayContent.innerHTML = html;
             })
             .catch(err => console.error('Overlay-Ladefehler:', err));
     }
     function closeOverlay() {
-        const ov = document.getElementById('current-overlay');
-        if (ov) ov.remove();
+        const overlayContainer = document.getElementById('overlay-container');
+        const imageContainer = document.getElementById('image-container');
+        overlayContainer.classList.remove('active');
+        imageContainer.classList.remove('inactive-map');
+    }
+    window.onload = function () {
+        imageMapResizer();
     }
 </script>
-
 </body>
 </html>
