@@ -1,31 +1,44 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dynamic Overlays</title>
+    <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
+
+<img src="resources/img/image.png" usemap="#image-map" alt="">
+<map name="map1">
+    <area shape="rect" coords="20,20,120,120"
+          href="javascript:void(0)"
+          onclick="loadOverlay('A')">
+    <area shape="circle" coords="200,100,50"
+          href="javascript:void(0)"
+          onclick="loadOverlay('B')">
+</map>
+
+<map name="image-map">
+    <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" id="cockpit" title="Koordinaten" coords="909,756,753,578" shape="rect">
+</map>
+
+<div id="overlay-container"></div>
+
 <script>
-    console.log(sessionStorage.getItem("uid"));
-    fetch('http://127.0.0.1:8000/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'uid': sessionStorage.getItem("uid"),
-        },
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Fehler beim Abrufen der Daten');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Daten erhalten:', data);
-        })
-        .catch(error => {
-            console.error('Fehler:', error);
-        });
+    function loadOverlay(key) {
+        fetch(`resources/overlays/overlay-${key}.html`)
+            .then(r => r.text())
+            .then(html => {
+                // vorhandenes Overlay entfernen
+                const c = document.getElementById('overlay-container');
+                c.innerHTML = html;
+            })
+            .catch(err => console.error('Overlay-Ladefehler:', err));
+    }
+    function closeOverlay() {
+        const ov = document.getElementById('current-overlay');
+        if (ov) ov.remove();
+    }
 </script>
+
 </body>
 </html>
