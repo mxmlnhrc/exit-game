@@ -1,31 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Dynamic Overlays</title>
+    <link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
+
+<div id="image-container">
+    <img src="resources/img/image.png" usemap="#image-map" alt="Cockpit des UBootes" id="cockpit">
+    <map name="image-map">
+        <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" title="Koordinaten" coords="909,756,753,578" shape="rect">
+    </map>
+</div>
+
+<!-- Overlay Container -->
+<div id="overlay-container" onClick="closeOverlay()">
+    <div class="overlay" id="current-overlay" onClick="event.stopPropagation()"></div>
+</div>
+
+
+<script src="resources/js/imageMapResizer.min.js"></script>
 <script>
-    console.log(sessionStorage.getItem("uid"));
-    fetch('http://127.0.0.1:8000/', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'uid': sessionStorage.getItem("uid"),
-        },
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Fehler beim Abrufen der Daten');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Daten erhalten:', data);
-        })
-        .catch(error => {
-            console.error('Fehler:', error);
-        });
+    function loadOverlay(key) {
+        fetch(`resources/overlays/overlay-${key}.html`)
+            .then(r => r.text())
+            .then(html => {
+                const overlayContainer = document.getElementById('overlay-container');
+                const imageContainer = document.getElementById('image-container');
+                overlayContainer.classList.add('active');
+                imageContainer.classList.add('inactive-map');
+                // Nur den Inhalt der .overlay-Div aktualisieren
+                const overlayContent = overlayContainer.querySelector('.overlay');
+                overlayContent.innerHTML = html;
+            })
+            .catch(err => console.error('Overlay-Ladefehler:', err));
+    }
+    function closeOverlay() {
+        const overlayContainer = document.getElementById('overlay-container');
+        const imageContainer = document.getElementById('image-container');
+        overlayContainer.classList.remove('active');
+        imageContainer.classList.remove('inactive-map');
+    }
+    window.onload = function () {
+        imageMapResizer();
+    }
 </script>
 </body>
 </html>
