@@ -10,7 +10,7 @@
 <div id="image-container">
     <img src="resources/img/image.png" usemap="#image-map" alt="Cockpit des UBootes" id="cockpit">
     <map name="image-map">
-        <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" title="Koordinaten" coords="909,756,753,578" shape="rect">
+        <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" title="Koordinaten" coords="893,657,1129,910" shape="rect">
     </map>
 </div>
 
@@ -43,7 +43,7 @@
         imageContainer.classList.remove('inactive-map');
     }
     window.onload = function () {
-        imageMapResizer();
+        imageMapResize();
     }
 </script>
 </body>
