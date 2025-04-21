@@ -10,7 +10,7 @@
 <div id="image-container">
     <img src="resources/img/image.png" usemap="#image-map" alt="Cockpit des UBootes" id="cockpit">
 
-    <map name="image-map">
+    <map name="image-map" style="background-color: #5e78d3">
         <area href="javascript:void(0)" onclick="loadOverlay('coordinates-entry')" alt="Koordinaten" title="Koordinaten" coords="889,640,1117,868" shape="rect">
         <area href="javascript:void(0)" onclick="loadOverlay('barometer')" alt="Barometer 1" title="Barometer 1" coords="308,744,112" shape="circle">
         <area href="javascript:void(0)" onclick="loadOverlay('barometer')" alt="Barometer 1" title="Barometer 1" coords="501,701,61" shape="circle">
@@ -39,10 +39,11 @@
                 const overlayContainer = document.getElementById('overlay-container');
                 const imageContainer = document.getElementById('image-container');
                 overlayContainer.classList.add('active');
-                imageContainer.classList.add('inactive-map');
+                imageContainer.classList.remove('inactive-map'); // Klasse entfernen
                 // Nur den Inhalt der .overlay-Div aktualisieren
                 const overlayContent = overlayContainer.querySelector('.overlay');
                 overlayContent.innerHTML = html;
+                imageMapResize();
             })
             .catch(err => console.error('Overlay-Ladefehler:', err));
     }
@@ -51,6 +52,7 @@
         const imageContainer = document.getElementById('image-container');
         overlayContainer.classList.remove('active');
         imageContainer.classList.remove('inactive-map');
+        imageMapResize();
     }
     window.onload = function () {
         imageMapResize();

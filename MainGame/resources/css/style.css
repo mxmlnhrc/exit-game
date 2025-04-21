@@ -58,6 +58,13 @@ body{
     max-height: 80%;
 }
 
+#image-map-coords{
+    background-color: transparent;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
 #image-container .inactive-map map area{
     pointer-events: none;
 }
