@@ -40,16 +40,22 @@ body{
 }
 
 #overlay-container .overlay {
-    background-color: #fff;
+    background-color: transparent;
     padding: 20px;
     border-radius: 8px;
     z-index: 10;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#overlay-container .overlay-img {
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 10;
+.overlay .coors-img{
+    background-color: transparent;
+    object-fit: contain;
+    max-width: 80%;
+    max-height: 80%;
 }
 
 #image-container .inactive-map map area{

@@ -26,6 +26,11 @@
 
 <script src="resources/js/imageMapResizer.min.js"></script>
 <script>
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') {
+            closeOverlay();
+        }
+    });
     function loadOverlay(key) {
         fetch(`resources/overlays/overlay-${key}.html`)
             .then(r => r.text())
