@@ -1,7 +1,27 @@
-<!-- Overlay für die die Lampe -->
-<div class="overlay-lampe active" id="current-overlay">
-  <div class="content">
-    <h2>Koordinaten Rätsel</h2>
-    <p>Das ist der Platzhalter für das Coordinaten Rätsel</p>
+<div class="overlay active" id="current-overlay coords-entry">
+  <div class="image-wrapper">
+    <img src="./resources/img/koordinaten.png" alt="Lampen Overlay" class="coors-img" usemap="#image-map-coords">
+
+    <div class="list-display">
+      <ul id="list-x" style="margin-bottom: 5px;"><a>X:</a></ul>
+      <ul id="list-y"><a>Y:</a></ul>
+    </div>
+
+    <map name="image-map-coords" id="image-map-coords">
+      <area alt="1" title="1" href="javascript:void(0)" onclick="koordinatenIn(1)" coords="84,423,214,531" shape="rect">
+      <area alt="2" title="2" href="javascript:void(0)" onclick="koordinatenIn(2)" coords="240,423,366,531" shape="rect">
+      <area alt="3" title="3" href="javascript:void(0)" onclick="koordinatenIn(3)" coords="396,425,512,528" shape="rect">
+      <area alt="4" title="4" href="javascript:void(0)" onclick="koordinatenIn(4)" coords="85,552,209,667" shape="rect">
+      <area alt="5" title="5" href="javascript:void(0)" onclick="koordinatenIn(5)" coords="242,553,364,663" shape="rect">
+      <area alt="6" title="6" href="javascript:void(0)" onclick="koordinatenIn(6)" coords="393,554,511,662" shape="rect">
+      <area alt="7" title="7" href="javascript:void(0)" onclick="koordinatenIn(7)" coords="84,682,207,789" shape="rect">
+      <area alt="8" title="8" href="javascript:void(0)" onclick="koordinatenIn(8)" coords="248,686,360,788" shape="rect">
+      <area alt="9" title="9" href="javascript:void(0)" onclick="koordinatenIn(9)" coords="397,686,508,782" shape="rect">
+      <area alt="0" title="0" href="javascript:void(0)" onclick="koordinatenIn(0)" coords="245,814,359,918" shape="rect">
+      <area alt="Enter" title="Enter" href="javascript:void(0)" onclick="koordinatenIn('enter')" coords="555,558,735,787" shape="rect">
+      <area alt="Entfernen" title="Entfernen" href="javascript:void(0)" onclick="koordinatenIn('entf')" coords="552,424,735,528" shape="rect">
+      <area alt="X-Entry" title="X-Entry" href="javascript:void(0)" onclick="koordinatenIn('x')" coords="225,122,696,221" shape="rect">
+      <area alt="Y-Entry" title="Y-Entry" href="javascript:void(0)" onclick="koordinatenIn('y')" coords="220,242,696,350" shape="rect">
+    </map>
   </div>
 </div>

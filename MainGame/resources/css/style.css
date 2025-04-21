@@ -40,18 +40,81 @@ body{
 }
 
 #overlay-container .overlay {
-    background-color: #fff;
+    background-color: transparent;
+    color: aqua;
     padding: 20px;
     border-radius: 8px;
     z-index: 10;
+    max-width: 80%;
+    max-height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#overlay-container .overlay-img {
-    padding: 20px;
-    border-radius: 8px;
-    z-index: 10;
+.overlay .coors-img{
+    background-color: transparent;
+    object-fit: contain;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+#image-map-coords{
+    background-color: transparent;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+#image-map{
+    position: relative;
 }
 
 #image-container .inactive-map map area{
     pointer-events: none;
+}
+
+.image-wrapper{
+    position: relative;
+    display: inline-block;
+}
+
+.image-wrapper img {
+    display: block;          /* entfernt die Bild-Unterbrechungen von Inline-Elementen */
+    width: 100%;             /* optional, falls du responsive Bilder willst */
+    height: auto;
+    margin: auto;
+    padding: 0;
+}
+
+.image-wrapper .list-display {
+    position: absolute;
+    top: 14%;
+    left: 33%;
+    font-size: 45px;
+    color: rgb(64, 63, 24);
+    display: inline-flex;
+    font-family: "Academy Engraved LET", cursive;
+;
+    align-items: flex-start;
+    height: 22%;
+    justify-content: space-between;
+    pointer-events: none;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+.image-wrapper .list-display ul {
+    list-style: none;        /* keine Aufzählungszeichen */
+    padding: 0;             /* kein Padding */
+    margin: 0;              /* kein Margin */
+}
+
+.blinking{
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
