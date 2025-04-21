@@ -44,6 +44,7 @@
                 const overlayContent = overlayContainer.querySelector('.overlay');
                 overlayContent.innerHTML = html;
                 imageMapResize();
+                updateList();
             })
             .catch(err => console.error('Overlay-Ladefehler:', err));
     }

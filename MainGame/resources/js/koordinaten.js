@@ -1,47 +1,67 @@
 let listX = [];
 let listY = [];
-let activeList = null;
+let activeList = listX; // Standardmäßig Liste X aktiv
 
 function koordinatenIn(key) {
     if (key === 'x') {
         activeList = listX;
-        console.log('Liste X ausgewählt:', activeList);
     } else if (key === 'y') {
         activeList = listY;
-        console.log('Liste Y ausgewählt:', activeList);
     } else if (key === 'entf') {
         if (activeList) {
             activeList.pop();
-            console.log('Letztes Element entfernt. Aktuelle Liste:', activeList);
         } else {
-            console.log('Keine Liste ausgewählt.');
         }
     } else if (!isNaN(key)) {
         if (activeList) {
-            activeList.push(key);
-            console.log('Zahl hinzugefügt. Aktuelle Liste:', activeList);
+            if (activeList.length < 5) {
+                activeList.push(key);
+            } else {
+            }
         } else {
             console.log('Keine Liste ausgewählt.');
         }
     }
-    updateList()
+    updateList();
 }
 
 function updateList() {
     const listXElement = document.getElementById('list-x');
     const listYElement = document.getElementById('list-y');
 
-    listXElement.innerHTML = '';
-    listX.forEach((item) => {
-        const listItem = document.createElement('a');
-        listItem.textContent = item;
-        listXElement.appendChild(listItem);
-    })
+    const maxLength = 5;
 
-    listYElement.innerHTML = '';
-    listY.forEach((item) => {
-        const listItem = document.createElement('a');
-        listItem.textContent = item;
-        listYElement.appendChild(listItem);
-    })
+    function formatListWithFixedDot(list) {
+        const formattedList = [];
+        let numberIndex = 0;
+
+        for (let i = 0; i < 6; i++) {
+            if (i === 3) {
+                formattedList.push('.');
+            } else {
+                formattedList.push(list[numberIndex] || '_');
+                numberIndex++;
+            }
+        }
+
+        return formattedList;
+    }
+
+    function renderList(element, list, isActive) {
+        element.innerHTML = '';
+        list.forEach((item, index) => {
+            const listItem = document.createElement('a');
+            listItem.textContent = item;
+
+            // Blinken nur für den nächsten Unterstrich der aktiven Liste
+            if (isActive && item === '_' && index === list.findIndex((el) => el === '_')) {
+                listItem.classList.add('blinking');
+            }
+
+            element.appendChild(listItem);
+        });
+    }
+
+    renderList(listXElement, formatListWithFixedDot(listX), activeList === listX);
+    renderList(listYElement, formatListWithFixedDot(listY), activeList === listY);
 }

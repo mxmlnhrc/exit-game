@@ -89,22 +89,32 @@ body{
 
 .image-wrapper .list-display {
     position: absolute;
-    top: 13.25%;
+    top: 14%;
     left: 33%;
-    background: rgba(0, 0, 0, 0.4);
     font-size: 45px;
-    color: white;
-    display: inline-flex
+    color: rgb(64, 63, 24);
+    display: inline-flex;
+    font-family: "Academy Engraved LET", cursive;
 ;
     align-items: flex-start;
     height: 22%;
     justify-content: space-between;
     pointer-events: none;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     flex-direction: column;
 }
 .image-wrapper .list-display ul {
     list-style: none;        /* keine Aufzählungszeichen */
     padding: 0;             /* kein Padding */
     margin: 0;              /* kein Margin */
+}
+
+.blinking{
+    animation: blink 1s step-start infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }
