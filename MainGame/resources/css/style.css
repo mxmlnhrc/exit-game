@@ -1,3 +1,4 @@
+/* General */
 html, body {
     margin: 0;
     padding: 0;
@@ -30,7 +31,7 @@ body{
     display: none;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 10;
 }
 
@@ -40,6 +41,12 @@ body{
 
 #overlay-container .overlay {
     background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+#overlay-container .overlay-img {
     padding: 20px;
     border-radius: 8px;
     z-index: 10;
