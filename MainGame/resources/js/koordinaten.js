@@ -24,4 +24,24 @@ function koordinatenIn(key) {
             console.log('Keine Liste ausgewählt.');
         }
     }
+    updateList()
+}
+
+function updateList() {
+    const listXElement = document.getElementById('list-x');
+    const listYElement = document.getElementById('list-y');
+
+    listXElement.innerHTML = '';
+    listX.forEach((item) => {
+        const listItem = document.createElement('a');
+        listItem.textContent = item;
+        listXElement.appendChild(listItem);
+    })
+
+    listYElement.innerHTML = '';
+    listY.forEach((item) => {
+        const listItem = document.createElement('a');
+        listItem.textContent = item;
+        listYElement.appendChild(listItem);
+    })
 }
