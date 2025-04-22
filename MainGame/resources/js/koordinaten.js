@@ -39,7 +39,7 @@ function updateList() {
             if (i === 3) {
                 formattedList.push('.');
             } else {
-                formattedList.push(list[numberIndex] || '_');
+                formattedList.push(numberIndex < list.length ? list[numberIndex] : '_');
                 numberIndex++;
             }
         }
