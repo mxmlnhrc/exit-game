@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 #Eigene Module
-from controller import initialize, salt_string
+from controller import initialize, salt_string, generate_check_sum
 
 app = FastAPI()
 
@@ -35,3 +35,14 @@ async def check_pw(request: Request):
         return JSONResponse(content={"success": True, "uid": salt_string(data["password"])}, status_code=201)
     else:
         return JSONResponse(content={"success": False}, status_code=400)
+
+@app.post("/check-coords")
+async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = Header(default=None)):
+    if uid == passwordCheck:
+        if x == 20612 and y == 31927:
+            generate_check_sum(uid, "Coords")
+            return JSONResponse(content={"success": True}, status_code=200)
+        else:
+            return JSONResponse(content={"success": False, "message":"coords"}, status_code=400)
+    else:
+        return JSONResponse(content={"success": False, "message":"wrong UID"}, status_code=400)
