@@ -10,3 +10,7 @@ def initialize():
 
 def salt_string(input_string):
     return hashlib.sha512((input_string + salt).encode()).hexdigest()
+
+def generate_check_sum(uid, level):
+    # Erstellt eine Prüfziffer für die UID und das Level
+    print(uid, level)
