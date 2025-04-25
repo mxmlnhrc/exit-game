@@ -1,19 +1,23 @@
-fetch('http://127.0.0.1:8000/', {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'uid': sessionStorage.getItem("uid"),
-    },
-})
+function validate() {
+    console.log(sessionStorage.getItem("uid"));
+    fetch('http://127.0.0.1:8000/', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'uid': sessionStorage.getItem("uid"),
+        },
+    })
     .then(response => {
+        console.log(response);
         if (!response.ok) {
-            throw new Error('Fehler beim Abrufen der Daten');
+            return false
         }
         return response.json();
     })
     .then(data => {
-        console.log('Daten erhalten:', data);
+        return true
     })
     .catch(error => {
         window.location.href = '../First Puzzle/index.html';
     });
+}

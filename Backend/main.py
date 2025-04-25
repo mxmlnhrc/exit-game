@@ -20,7 +20,7 @@ app.add_middleware(
 passwordCheck = salt_string(str(885))
 
 #Der Hash muss immer als Identifier übergeben werden
-@app.get("/")
+@app.post("/")
 def read_root(uid: str = Header(default=None)):
     if uid == passwordCheck:
         return JSONResponse(content={"message": "Willkomen"})
