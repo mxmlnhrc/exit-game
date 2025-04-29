@@ -26,6 +26,7 @@
 
 <script src="resources/js/koordinaten.js"></script>
 <script src="resources/js/imageMapResizer.min.js"></script>
+<script src="validator.js"></script>
 <script>
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
@@ -33,6 +34,7 @@
         }
     });
     function loadOverlay(key) {
+        //validate();
         fetch(`resources/overlays/overlay-${key}.html`)
             .then(r => r.text())
             .then(html => {

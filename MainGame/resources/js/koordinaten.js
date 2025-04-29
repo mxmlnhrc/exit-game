@@ -10,8 +10,11 @@ function koordinatenIn(key) {
     } else if (key === 'entf') {
         if (activeList) {
             activeList.pop();
-        } else {
         }
+    } else if (key === 'enter'){
+        console.log(listX);
+        console.log(listY);
+        sendCoords();
     } else if (!isNaN(key)) {
         if (activeList) {
             if (activeList.length < 5) {
@@ -64,4 +67,30 @@ function updateList() {
 
     renderList(listXElement, formatListWithFixedDot(listX), activeList === listX);
     renderList(listYElement, formatListWithFixedDot(listY), activeList === listY);
+}
+
+function sendCoords() {
+    const formData = new FormData();
+    formData.append("x", parseInt(listX.join(''), 10));
+    formData.append("y", parseInt(listY.join(''), 10));
+
+    fetch("/check-coords", {
+        method: "POST",
+        headers: {
+            "uid": sessionStorage.getItem('uid')
+        },
+        body: formData
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Fehler beim Senden der Anfrage");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Antwort:", data);
+        })
+        .catch(error => {
+            console.error("Fehler:", error);
+        });
 }
