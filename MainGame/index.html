@@ -34,7 +34,7 @@
         }
     });
     function loadOverlay(key) {
-        validate();
+        //validate();
         fetch(`resources/overlays/overlay-${key}.html`)
             .then(r => r.text())
             .then(html => {
