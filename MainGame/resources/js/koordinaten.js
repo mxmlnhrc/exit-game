@@ -70,17 +70,28 @@ function updateList() {
 }
 
 function sendCoords() {
-    const formData = new FormData();
-    formData.append("x", parseInt(listX.join(''), 10));
-    formData.append("y", parseInt(listY.join(''), 10));
+    fetch("resources/static.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Fehler beim Laden der URL-Basis");
+            }
+            return response.json();
+        })
+        .then(config => {
+            const url = `${config.url_base}check-coords`;
+            const formData = new FormData();
+            formData.append("x", parseInt(listX.join(''), 10));
+            formData.append("y", parseInt(listY.join(''), 10));
+            console.log(formData);
 
-    fetch("/check-coords", {
-        method: "POST",
-        headers: {
-            "uid": sessionStorage.getItem('uid')
-        },
-        body: formData
-    })
+            return fetch(url, {
+                method: "POST",
+                headers: {
+                    "uid": sessionStorage.getItem('uid')
+                },
+                body: formData
+            });
+        })
         .then(response => {
             if (!response.ok) {
                 throw new Error("Fehler beim Senden der Anfrage");
