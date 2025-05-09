@@ -1,9 +1,19 @@
 <div class="overlay active" id="current-overlay">
-  <img src="./resources/img/barometer.png" alt="Lampen Overlay" class="note" usemap="#barometer-map">
+
+  <div class="image-wrapper">
+    <img src="./resources/img/barometer.png" alt="Barometer" class="barometer-img">
+    <div class="barometer-display">
+      <div id="bar1">0</div>
+      <div id="bar2">0</div>
+      <div id="bar3">0</div>
+    </div>
+  </div>
 
   <map name="barometer-map">
-    <area title="input 1" href="javascript:void(0)" onclick="" coords="439,358,525,449" shape="rect" alt="input 1">
-    <area title="input 2" href="javascript:void(0)" onclick="" coords="544,360,637,449" shape="rect" alt="input 2">
-    <area title="input 3" href="javascript:void(0)" onclick="" coords="654,359,746,448" shape="rect" alt="input 3">
+    <area title="input 1" href="javascript:void(0)" onclick="updateBarometer('1')" coords="439,358,525,449" shape="rect" alt="input 1">
+    <area title="input 2" href="javascript:void(0)" onclick="updateBarometer('2')" coords="544,360,637,449" shape="rect" alt="input 2">
+    <area title="input 3" href="javascript:void(0)" onclick="updateBarometer('3')" coords="654,359,746,448" shape="rect" alt="input 3">
   </map>
+
+
 </div>
