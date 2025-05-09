@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>Dynamic Overlays</title>
     <link rel="stylesheet" href="resources/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+
+    </style>
 </head>
 <body>
 
+
+<div id="countdown">20:00</div>
 <div id="image-container">
     <img src="resources/img/image.png" usemap="#image-map" alt="Cockpit des UBootes" id="cockpit">
 
@@ -30,6 +36,7 @@
 <script src="resources/js/koordinaten.js"></script>
 <script src="resources/js/imageMapResizer.min.js"></script>
 <script src="validator.js"></script>
+<script src="resources/js/countdown.js"></script>
 <script>
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape') {
@@ -62,6 +69,7 @@
     }
     window.onload = function () {
         imageMapResize();
+        startCountdown();
     }
 </script>
 </body>
