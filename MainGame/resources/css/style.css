@@ -121,14 +121,19 @@ body{
 
 #countdown {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 30px;
+    right: 2rem;
     font-family: 'Press Start 2P', cursive;
-    font-size: 20px;
-    color: #fff;
-    background-color: #000;
-    padding: 10px;
-    border: 2px solid #fff;
+    font-size: 25px;
+    color: #514a1c;
+    background-color: #26290f;
+    padding: 20px;
+    border: 3px solid #6b430a;
     border-radius: 5px;
     z-index: 10;
+}
+
+.note {
+    height: 30%;
+    max-width: 80%;
 }
