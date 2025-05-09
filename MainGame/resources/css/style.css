@@ -137,3 +137,21 @@ body{
     height: 30%;
     max-width: 80%;
 }
+
+
+.barometer-display {
+    position: absolute;
+    width: 30%;
+    top: 73%; /* Position relativ zum Bild */
+    left: 69%; /* Position relativ zum Bild */
+    transform: translate(-50%, -50%); /* Zentriert den Div */
+    font-size: 48px;
+    color: rgb(64, 63, 24);
+    display: inline-flex;
+    font-family: "Academy Engraved LET", cursive;
+    align-items: flex-start;
+    justify-content: space-between;
+    pointer-events: none;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
