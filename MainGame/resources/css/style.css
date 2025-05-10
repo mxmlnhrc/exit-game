@@ -95,6 +95,7 @@ body{
     color: rgb(64, 63, 24);
     display: inline-flex;
     font-family: "Academy Engraved LET", cursive;
+;
     align-items: flex-start;
     height: 22%;
     justify-content: space-between;
@@ -153,23 +154,4 @@ body{
     pointer-events: none;
     flex-wrap: nowrap;
     flex-direction: row;
-}
-
-.overlay.active {
-    position: relative;
-    z-index: 10;
-}
-
-.image-wrapper {
-    position: relative;
-    z-index: 5;
-}
-
-.barometer-display {
-    pointer-events: none; /* Klicks durchlassen */
-}
-
-map[name="barometer-map"] {
-    position: relative;
-    z-index: 15; /* Höher als andere Elemente */
 }
