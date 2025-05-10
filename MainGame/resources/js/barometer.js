@@ -2,6 +2,6 @@ let barometer1;
 let barometer2;
 let barometer3;
 
-function getBarometer(key){
+function updateBarometer(key){
     console.log(key);
 }
