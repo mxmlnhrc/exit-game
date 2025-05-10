@@ -71,3 +71,11 @@ function sendBar() {
         });
 }
 
+function disableInputs() {
+    for (let i = 1; i <= 3; i++) {
+        const area = document.getElementById(`bar-area-${i}`);
+        if (area) {
+            area.onclick = null;
+        }
+    }
+}
