@@ -18,6 +18,6 @@ function validate() {
         return true
     })
     .catch(error => {
-        window.location.href = '../First Puzzle/index.html';
+        window.location.href = '../index.html';
     });
 }
