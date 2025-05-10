@@ -1,74 +1,53 @@
-let barometer1;
-let barometer2;
-let barometer3;
-
 function loadBarometerValues() {
+    const storedBarometers = sessionStorage.getItem('barometers');
+    let barometers = [0, 0, 0]; // Standardwerte
 
-    let hasStoredValues = false;
-
-    const storedBarometer1 = sessionStorage.getItem('barometer1');
-    const storedBarometer2 = sessionStorage.getItem('barometer2');
-    const storedBarometer3 = sessionStorage.getItem('barometer3');
-
-    if (storedBarometer1 !== null && document.getElementById('bar1')) {
-        barometer1 = parseInt(storedBarometer1, 10);
-        document.getElementById('bar1').textContent = barometer1;
-        hasStoredValues = true;
-        console.log(storedBarometer1);
-    }
-    if (storedBarometer2 !== null && document.getElementById('bar2')) {
-        barometer2 = parseInt(storedBarometer2, 10);
-        document.getElementById('bar2').textContent = barometer2;
-        hasStoredValues = true;
-        console.log(storedBarometer2);
-    }
-    if (storedBarometer3 !== null && document.getElementById('bar3')) {
-        barometer3 = parseInt(storedBarometer3, 10);
-        document.getElementById('bar3').textContent = barometer3;
-        hasStoredValues = true;
-        console.log(storedBarometer3);
+    if (storedBarometers) {
+        barometers = JSON.parse(storedBarometers);
     }
 
-    if (hasStoredValues) {
-        sendBar();
+    if (document.getElementById('bar1')) {
+        document.getElementById('bar1').textContent = barometers[0];
     }
+    if (document.getElementById('bar2')) {
+        document.getElementById('bar2').textContent = barometers[1];
+    }
+    if (document.getElementById('bar3')) {
+        document.getElementById('bar3').textContent = barometers[2];
+    }
+
+    sendBar(barometers);
 }
 
-
 function updateBarometer(key) {
-    loadBarometerValues();
+    const storedBarometers = sessionStorage.getItem('barometers');
+    let barometers = [0, 0, 0]; // Standardwerte
+
+    if (storedBarometers) {
+        barometers = JSON.parse(storedBarometers);
+    }
+
     const input = prompt("Bitte eine Zahl eingeben:");
     const value = parseInt(input, 10);
+
     if (input !== null && !isNaN(value) && value >= 0 && value <= 9) {
-        switch (key) {
-            case '1':
-                barometer1 = value;
-                document.getElementById('bar1').textContent = barometer1;
-                sessionStorage.setItem('barometer1', barometer1);
-                sendBar();
-                break;
-            case '2':
-                barometer2 = value;
-                document.getElementById('bar2').textContent = barometer2;
-                sessionStorage.setItem('barometer2', barometer2);
-                sendBar();
-                break;
-            case '3':
-                barometer3 = value;
-                document.getElementById('bar3').textContent = barometer3;
-                sessionStorage.setItem('barometer3', barometer3);
-                sendBar();
-                break;
-            default:
-                console.error("Ungültiger Schlüssel:", key);
+        const index = parseInt(key, 10) - 1;
+        if (index >= 0 && index < barometers.length) {
+            barometers[index] = value;
+            sessionStorage.setItem('barometers', JSON.stringify(barometers));
+
+            if (document.getElementById(`bar${key}`)) {
+                document.getElementById(`bar${key}`).textContent = value;
+            }
+
+            sendBar(barometers);
         }
     } else {
         alert("Bitte eine gültige Zahl eingeben!");
     }
 }
 
-
-function sendBar() {
+function sendBar(barometers) {
     fetch("resources/static.json")
         .then(response => {
             if (!response.ok) {
@@ -79,9 +58,9 @@ function sendBar() {
         .then(config => {
             const url = `${config.url_base}check-bar`;
             const formData = new FormData();
-            formData.append("bar1", barometer1);
-            formData.append("bar2", barometer2);
-            formData.append("bar3", barometer3);
+            formData.append("bar1", barometers[0]);
+            formData.append("bar2", barometers[1]);
+            formData.append("bar3", barometers[2]);
             console.log(formData);
 
             return fetch(url, {
