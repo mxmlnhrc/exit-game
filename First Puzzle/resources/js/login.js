@@ -28,7 +28,7 @@ function sendPostRequest(data) {
                 console.log('Bestätigung erhalten:', result.uid);
                 sessionStorage.setItem('uid', result.uid);
                 // Weiterleitung zu einer Seite in einem anderen Ordner
-                window.location.href = '../MainGame/index.html';
+                window.location.href = '../../../MainGame/index.html';
             } else {
                 console.log('Ablehnung erhalten:', result.message);
             }
