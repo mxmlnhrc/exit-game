@@ -6,7 +6,6 @@ let isSendCoordsSuccessful = false;
 
 function koordinatenIn(key) {
     if (isSendCoordsSuccessful) {
-        console.log("Interaktion deaktiviert, da bereits ein Erfolg gemeldet wurde.");
         return;
     }
 
@@ -41,6 +40,7 @@ function saveListsToSession() {
 }
 
 function updateList() {
+    sendCoords();
     const listXElement = document.getElementById('list-x');
     const listYElement = document.getElementById('list-y');
 
@@ -114,7 +114,6 @@ function sendCoords() {
             console.log("Antwort:", data);
             if (data.success) {
                 isSendCoordsSuccessful = true; // Interaktionen deaktivieren
-                console.log("Erfolg! Weitere Klicks deaktiviert.");
             }
         })
         .catch(error => {
