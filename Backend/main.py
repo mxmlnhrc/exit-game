@@ -48,5 +48,8 @@ async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = H
     #    return JSONResponse(content={"success": False, "message":"wrong UID"}, status_code=400)
 
 @app.post("/check-bar")
-async def check_bar(bar: str = Form(...), uid: str = Header(default=None)):
-    print(bar)
+async def check_bar(bar1: int = Form(...), bar2: int = Form(...), bar3: int = Form(...), uid: str = Header(default=None)):
+    if bar1 == 6 and bar2 == 4 and bar3 == 7:
+        return JSONResponse(content={"success": True}, status_code=200)
+    else:
+        return JSONResponse(content={"success": False, "message":"at least one is wrong"}, status_code=400)
