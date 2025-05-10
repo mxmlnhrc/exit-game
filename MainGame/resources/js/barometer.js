@@ -1,3 +1,5 @@
+let firstCorrectBarIn = true;
+
 function loadBarometerValues() {
     const storedBarometers = sessionStorage.getItem('barometers');
     let barometers = [0, 0, 0]; // Standardwerte
@@ -81,6 +83,10 @@ function sendBar(barometers) {
             console.log("Antwort:", data);
             if (data.success === true) {
                 disableInputs();
+                if(firstCorrectBarIn === true){
+                    firstCorrectBarIn = false;
+                    closeOverlay();
+                }
             }
         })
         .catch(error => {

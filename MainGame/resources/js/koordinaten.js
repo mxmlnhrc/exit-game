@@ -1,3 +1,5 @@
+let firstCorrectCoordIn = true;
+
 let listX = JSON.parse(sessionStorage.getItem('listX')) || [];
 let listY = JSON.parse(sessionStorage.getItem('listY')) || [];
 let activeList = listX; // Standardmäßig Liste X aktiv
@@ -114,6 +116,10 @@ function sendCoords() {
             console.log("Antwort:", data);
             if (data.success) {
                 isSendCoordsSuccessful = true; // Interaktionen deaktivieren
+                if (firstCorrectCoordIn === true) {
+                    firstCorrectCoordIn = false;
+                    closeOverlay();
+                }
             }
         })
         .catch(error => {
