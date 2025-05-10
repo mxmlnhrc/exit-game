@@ -1,8 +1,15 @@
-let listX = [];
-let listY = [];
+let listX = JSON.parse(sessionStorage.getItem('listX')) || [];
+let listY = JSON.parse(sessionStorage.getItem('listY')) || [];
 let activeList = listX; // Standardmäßig Liste X aktiv
 
+let isSendCoordsSuccessful = false;
+
 function koordinatenIn(key) {
+    if (isSendCoordsSuccessful) {
+        console.log("Interaktion deaktiviert, da bereits ein Erfolg gemeldet wurde.");
+        return;
+    }
+
     if (key === 'x') {
         activeList = listX;
     } else if (key === 'y') {
@@ -11,7 +18,7 @@ function koordinatenIn(key) {
         if (activeList) {
             activeList.pop();
         }
-    } else if (key === 'enter'){
+    } else if (key === 'enter') {
         console.log(listX);
         console.log(listY);
         sendCoords();
@@ -19,13 +26,18 @@ function koordinatenIn(key) {
         if (activeList) {
             if (activeList.length < 5) {
                 activeList.push(key);
-            } else {
             }
         } else {
             console.log('Keine Liste ausgewählt.');
         }
     }
+    saveListsToSession();
     updateList();
+}
+
+function saveListsToSession() {
+    sessionStorage.setItem('listX', JSON.stringify(listX));
+    sessionStorage.setItem('listY', JSON.stringify(listY));
 }
 
 function updateList() {
@@ -100,6 +112,10 @@ function sendCoords() {
         })
         .then(data => {
             console.log("Antwort:", data);
+            if (data.success) {
+                isSendCoordsSuccessful = true; // Interaktionen deaktivieren
+                console.log("Erfolg! Weitere Klicks deaktiviert.");
+            }
         })
         .catch(error => {
             console.error("Fehler:", error);
