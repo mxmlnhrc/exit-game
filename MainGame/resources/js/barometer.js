@@ -1,8 +1,42 @@
-let barometer1 = 0;
-let barometer2 = 0;
-let barometer3 = 0;
+let barometer1;
+let barometer2;
+let barometer3;
+
+function loadBarometerValues() {
+
+    let hasStoredValues = false;
+
+    const storedBarometer1 = sessionStorage.getItem('barometer1');
+    const storedBarometer2 = sessionStorage.getItem('barometer2');
+    const storedBarometer3 = sessionStorage.getItem('barometer3');
+
+    if (storedBarometer1 !== null && document.getElementById('bar1')) {
+        barometer1 = parseInt(storedBarometer1, 10);
+        document.getElementById('bar1').textContent = barometer1;
+        hasStoredValues = true;
+        console.log(storedBarometer1);
+    }
+    if (storedBarometer2 !== null && document.getElementById('bar2')) {
+        barometer2 = parseInt(storedBarometer2, 10);
+        document.getElementById('bar2').textContent = barometer2;
+        hasStoredValues = true;
+        console.log(storedBarometer2);
+    }
+    if (storedBarometer3 !== null && document.getElementById('bar3')) {
+        barometer3 = parseInt(storedBarometer3, 10);
+        document.getElementById('bar3').textContent = barometer3;
+        hasStoredValues = true;
+        console.log(storedBarometer3);
+    }
+
+    if (hasStoredValues) {
+        sendBar();
+    }
+}
+
 
 function updateBarometer(key) {
+    loadBarometerValues();
     const input = prompt("Bitte eine Zahl eingeben:");
     const value = parseInt(input, 10);
     if (input !== null && !isNaN(value) && value >= 0 && value <= 9) {
@@ -10,17 +44,20 @@ function updateBarometer(key) {
             case '1':
                 barometer1 = value;
                 document.getElementById('bar1').textContent = barometer1;
-                sendBar()
+                sessionStorage.setItem('barometer1', barometer1);
+                sendBar();
                 break;
             case '2':
                 barometer2 = value;
                 document.getElementById('bar2').textContent = barometer2;
-                sendBar()
+                sessionStorage.setItem('barometer2', barometer2);
+                sendBar();
                 break;
             case '3':
                 barometer3 = value;
                 document.getElementById('bar3').textContent = barometer3;
-                sendBar()
+                sessionStorage.setItem('barometer3', barometer3);
+                sendBar();
                 break;
             default:
                 console.error("Ungültiger Schlüssel:", key);
@@ -29,6 +66,7 @@ function updateBarometer(key) {
         alert("Bitte eine gültige Zahl eingeben!");
     }
 }
+
 
 function sendBar() {
     fetch("resources/static.json")
@@ -76,6 +114,7 @@ function disableInputs() {
         const area = document.getElementById(`bar-area-${i}`);
         if (area) {
             area.onclick = null;
+            area.classList.add('inactive');
         }
     }
 }

@@ -47,7 +47,6 @@
         }
     });
     function loadOverlay(key) {
-        //validate();
         fetch(`resources/overlays/overlay-${key}.html`)
             .then(r => r.text())
             .then(html => {
@@ -59,10 +58,21 @@
                 const overlayContent = overlayContainer.querySelector('.overlay');
                 overlayContent.innerHTML = html;
                 imageMapResize();
-                updateList();
+
+                switch (key) {
+                    case 'coordinates-entry':
+                        updateList();
+                        break;
+                    case 'barometer':
+                        loadBarometerValues();
+                        break;
+                    default:
+                        break;
+                }
             })
             .catch(err => console.error('Overlay-Ladefehler:', err));
     }
+
     function closeOverlay() {
         const overlayContainer = document.getElementById('overlay-container');
         const imageContainer = document.getElementById('image-container');
