@@ -46,3 +46,7 @@ async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = H
         return JSONResponse(content={"success": False, "message":"coords"}, status_code=400)
     #else:
     #    return JSONResponse(content={"success": False, "message":"wrong UID"}, status_code=400)
+
+@app.post("/check-bar")
+async def check_bar(bar: str = Form(...), uid: str = Header(default=None)):
+    print(bar)
