@@ -41,6 +41,7 @@ async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = H
     # if uid == passwordCheck:
     if x == 20612 and y == 31927:
         generate_check_sum(uid, "Coords")
+
         return JSONResponse(content={"success": True}, status_code=200)
     else:
         return JSONResponse(content={"success": False, "message":"coords"}, status_code=400)
