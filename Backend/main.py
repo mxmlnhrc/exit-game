@@ -89,7 +89,7 @@ async def check_morse(message: str = Form(...), uid: str = Header(default=None))
         global blink_thread
         if blink_thread and blink_thread.is_alive():
             # Thread kann in Python nicht direkt "gekillt" werden, daher setze ein Flag im blink_cycle, um den Thread zu beenden
-            blink_thread.stop = True  # Du musst im blink_cycle regelmäßig auf dieses Attribut prüfen und dann return ausführen
+            blink_thread.stop = True 
             blink_thread = None
             print("Blink-Thread wird gestoppt")
         activate_led(13)
