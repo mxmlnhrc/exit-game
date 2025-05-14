@@ -31,7 +31,7 @@ Wenn du eine Liste aller Befehle brauchst, tippe 'help'
               ___
              /   |  
    ,--------'    '--------..._,.
-  (                          _--+
+  (      HERTHA BSC          _--+
    \`----------------------''' \`'
 > Gebe 'help' ein falls du nicht weiter weißt.
 

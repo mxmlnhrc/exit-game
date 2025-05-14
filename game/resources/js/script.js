@@ -131,6 +131,9 @@ function handleCommand(cmd) {
                 storyText.textContent = commands.story;
                 output.appendChild(storyText);
                 break;
+            case 'HERTHA BSC' === cmd:
+                console.log('Skip the game - Gewonnen');
+                break;
             default:
                 const response = document.createElement('div');
                 response.textContent = `Command not found: ${cmd}`;
