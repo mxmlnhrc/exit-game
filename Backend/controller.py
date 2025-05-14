@@ -50,3 +50,26 @@ def blink_cycle():
     except Exception:
         pass  # Thread wird mit Hauptprogramm beendet
 
+
+level_bar = False
+level_entry = False
+level_morse = False
+level_coords = False
+
+def change_level_state(level):
+    # Hier wird der Status des Levels geändert
+    if level == "bar":
+        level_bar = True
+    elif level == "entry":
+        level_entry = True
+    elif level == "morse":
+        level_morse = True
+    elif level == "coords":
+        level_coords = True
+
+def check_all_Level():
+    # Hier wird überprüft, ob alle Level aktiv sind
+    if level_bar and level_entry and level_morse and level_coords:
+        return True
+    else:
+        return False
