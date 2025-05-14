@@ -12,17 +12,25 @@ function verifyAll() {
         })
         .then(config => {
             const url = `${config.url_base}`;
+            return fetch(url, {
+                method: "post",
+                headers: {
+                    "uid": sessionStorage.getItem('uid')
+                },
+            });
         })
         .then(response => {
+            console.log(response);
             if (!response.ok) {
                 throw new Error("Fehler beim Senden der Anfrage");
             }
+            window.location.href = '../EndScene.html';
             return response.json();
         })
         .then(data => {
             console.log("Antwort:", data);
             if (data.success) {
-                window.location.href = '../EndScene.html';
+                window.location.href = '/EndScene.html';
             }
         })
         .catch(error => {
