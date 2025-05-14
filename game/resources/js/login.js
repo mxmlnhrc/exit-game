@@ -10,7 +10,7 @@ function checkHash(input) {
 }
 
 function sendPostRequest(data) {
-    fetch("http://127.0.0.1:8000/check-pw", {
+    fetch("http://10.42.0.1:8000/check-pw", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

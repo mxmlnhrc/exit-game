@@ -3,9 +3,28 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 #Eigene Module
-from controller import initialize, salt_string, generate_check_sum
+from controller import initialize, salt_string, generate_check_sum, activate_led
 
-app = FastAPI()
+
+#RaspberryPi Code
+# main.py
+import RPi.GPIO as GPIO
+import threading
+import time
+
+# --- GPIO Setup ---
+LED_PINS = [18, 12, 13]
+
+def gpio_setup():
+    GPIO.setmode(GPIO.BCM)
+    for pin in LED_PINS:
+        GPIO.setup(pin, GPIO.OUT)
+        GPIO.output(pin, GPIO.LOW)
+
+def gpio_cleanup():
+    GPIO.cleanup()
+
+app = FastAPI(on_startup=[gpio_setup], on_shutdown=[gpio_cleanup])
 
 #CORS Config
 app.add_middleware(
@@ -32,6 +51,8 @@ async def check_pw(request: Request):
     data = await request.json()
     if salt_string(data["password"]) == passwordCheck:
         initialize()
+        # Hier wird die LED aktiviert
+        activate_led(18)
         return JSONResponse(content={"success": True, "uid": salt_string(data["password"])}, status_code=201)
     else:
         return JSONResponse(content={"success": False}, status_code=400)
