@@ -9,7 +9,7 @@ function morseIn(key) {
         return;
     }
 
-    console.log(key);
+    console.log(key)
 
     if (key === 'entf') {
         if (morseList) {
@@ -18,16 +18,11 @@ function morseIn(key) {
     } else if (key === 'enter') {
         console.log(morseList);
         sendMorse();
-    } else if (!isNaN(key)) {
-        if (activeList) {
-            if (activeList.length < 5) {
-                activeList.push(key);
-            }
-        } else {
-            console.log('Keine Liste ausgewählt.');
-        }
     }
-    saveListsToSessionMorse();
+    if(morseList.length < 4){
+        morseList.push(key);
+        saveListsToSessionMorse();
+    }
     updateMorseList();
 }
 
@@ -37,9 +32,20 @@ function saveListsToSessionMorse() {
 
 function updateMorseList() {
     sendMorse();
-    const listXElement = document.getElementById('list-x');
+    const listMorseElements = document.getElementById('list-morse');
 
     const maxLength = 4;
+
+    function formatListMorse(list) {
+        const formatedMorseList = [];
+        let numberIndex = 0;
+
+        for (let i = 0; i < 4; i++) {
+            formatedMorseList.push(numberIndex < list.length ? list[numberIndex] : '_');
+            numberIndex++;
+        }
+        return formatedMorseList;
+    }
 
     function renderMorseList(element, list) {
         element.innerHTML = '';
@@ -48,15 +54,13 @@ function updateMorseList() {
             listItem.textContent = item;
 
             // Blinken nur für den nächsten Unterstrich der aktiven Liste
-            if (isActive && item === '_' && index === list.findIndex((el) => el === '_')) {
+            if (item === '_' && index === list.findIndex((el) => el === '_')) {
                 listItem.classList.add('blinking');
             }
-
             element.appendChild(listItem);
         });
     }
-
-    renderMorseList(listXElement, formatListWithFixedDot(listX), activeList === listX);
+    renderMorseList(listMorseElements, formatListMorse(morseList));
 }
 
 function sendMorse() {
@@ -70,7 +74,7 @@ function sendMorse() {
         .then(config => {
             const url = `${config.url_base}check-morse`;
             const formData = new FormData();
-            formData.append("message", parseInt(morseList.join(''), 10));
+            formData.append("message", morseList.join(''));
             console.log(formData);
 
             return fetch(url, {
@@ -91,8 +95,8 @@ function sendMorse() {
             console.log("Antwort:", data);
             if (data.success) {
                 isSendCoordsSuccessful = true; // Interaktionen deaktivieren
-                if (firstCorrectCoordIn === true) {
-                    firstCorrectCoordIn = false;
+                if (firstCorrectMorseIn === true) {
+                    firstCorrectMorseIn = false;
                     closeOverlay();
                 }
             }
