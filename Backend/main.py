@@ -56,7 +56,7 @@ async def check_pw(request: Request):
         global blink_thread
         if blink_thread and blink_thread.is_alive():
             return {"status": "already blinking"}
-        blink_thread = threading.Thread(target=blink_cycle, args=(13,), daemon=True)
+        blink_thread = threading.Thread(target=blink_cycle, daemon=True)
         blink_thread.start()
         return JSONResponse(content={"success": True, "uid": salt_string(data["password"])}, status_code=201)
     else:
@@ -77,7 +77,7 @@ async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = H
 @app.post("/check-bar")
 async def check_bar(bar1: int = Form(...), bar2: int = Form(...), bar3: int = Form(...), uid: str = Header(default=None)):
     if bar1 == 6 and bar2 == 4 and bar3 == 7:
-        activate_led(13)
+        activate_led(12)
         return JSONResponse(content={"success": True}, status_code=200)
     else:
         return JSONResponse(content={"success": False, "message":"at least one is wrong"}, status_code=400)
@@ -85,7 +85,14 @@ async def check_bar(bar1: int = Form(...), bar2: int = Form(...), bar3: int = Fo
 @app.post("/check-morse")
 async def check_morse(message: str = Form(...), uid: str = Header(default=None)):
     if message == "1793":
-        activate_led(12)
+       #Morse Routine stoppen
+        global blink_thread
+        if blink_thread and blink_thread.is_alive():
+            # Thread kann in Python nicht direkt "gekillt" werden, daher setze ein Flag im blink_cycle, um den Thread zu beenden
+            blink_thread.stop = True  # Du musst im blink_cycle regelmäßig auf dieses Attribut prüfen und dann return ausführen
+            blink_thread = None
+            print("Blink-Thread wird gestoppt")
+        activate_led(13)
         return JSONResponse(content={"success": True}, status_code=200)
     else:
         return JSONResponse(content={"success": False, "message": "at least one is wrong"}, status_code=400)
