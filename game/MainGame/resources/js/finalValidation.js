@@ -24,13 +24,12 @@ function verifyAll() {
             if (!response.ok) {
                 throw new Error("Fehler beim Senden der Anfrage");
             }
-            window.location.href = '../EndScene.html';
+            //window.location.href = '../EndScene.html';
             return response.json();
         })
         .then(data => {
-            console.log("Antwort:", data);
             if (data.success) {
-                window.location.href = '/EndScene.html';
+                window.location.href = '/MainGame/EndScene.html';
             }
         })
         .catch(error => {
