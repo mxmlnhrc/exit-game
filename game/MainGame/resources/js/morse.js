@@ -8,21 +8,19 @@ function morseIn(key) {
     if (isMorseSuccessful) {
         return;
     }
-
     console.log(key)
 
     if (key === 'entf') {
-        if (morseList) {
-            morseList.pop();
-        }
+        morseList.pop();
     } else if (key === 'enter') {
         console.log(morseList);
         sendMorse();
+    } else if (!isNaN(key)) {
+        if(morseList.length < 4){
+            morseList.push(key);
+        }
     }
-    if(morseList.length < 4){
-        morseList.push(key);
-        saveListsToSessionMorse();
-    }
+    saveListsToSessionMorse();
     updateMorseList();
 }
 
@@ -94,7 +92,7 @@ function sendMorse() {
         .then(data => {
             console.log("Antwort:", data);
             if (data.success) {
-                isSendCoordsSuccessful = true; // Interaktionen deaktivieren
+                isMorseSuccessful = true; // Interaktionen deaktivieren
                 if (firstCorrectMorseIn === true) {
                     firstCorrectMorseIn = false;
                     closeOverlay();
