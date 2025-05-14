@@ -50,9 +50,6 @@ def read_root(uid: str = Header(default=None)):
 async def check_pw(request: Request):
     data = await request.json()
     if salt_string(data["password"]) == passwordCheck:
-        initialize()
-        # Hier wird die LED aktiviert
-        activate_led(18)
         return JSONResponse(content={"success": True, "uid": salt_string(data["password"])}, status_code=201)
     else:
         return JSONResponse(content={"success": False}, status_code=400)
@@ -62,7 +59,7 @@ async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = H
     # if uid == passwordCheck:
     if x == 20612 and y == 31927:
         generate_check_sum(uid, "Coords")
-
+        activate_led(12)
         return JSONResponse(content={"success": True}, status_code=200)
     else:
         return JSONResponse(content={"success": False, "message":"coords"}, status_code=400)
@@ -72,6 +69,15 @@ async def check_coordinates(x: int = Form(...), y: int = Form(...), uid: str = H
 @app.post("/check-bar")
 async def check_bar(bar1: int = Form(...), bar2: int = Form(...), bar3: int = Form(...), uid: str = Header(default=None)):
     if bar1 == 6 and bar2 == 4 and bar3 == 7:
+        activate_led(13)
         return JSONResponse(content={"success": True}, status_code=200)
     else:
         return JSONResponse(content={"success": False, "message":"at least one is wrong"}, status_code=400)
+
+@app.post("/check-morse")
+async def check_morse(message: str = Form(...), uid: str = Header(default=None)):
+    if message == "1793":
+        activate_led(18)
+        return JSONResponse(content={"success": True}, status_code=200)
+    else:
+        return JSONResponse(content={"success": False, "message": "at least one is wrong"}, status_code=400)
