@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Final Scene</title>
+    <title>Fullscreen Video</title>
 </head>
 <body>
-  <h1>Final Scene</h1>
+<video id="fullscreenVideo" autoplay muted>
+    <source src="/resources/vids/final_scene.mp4" type="video/mp4">
+</video>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('fullscreenVideo');
+
+        // Starte das Video im Vollbildmodus
+        video.play().then(() => {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Für Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // Für IE/Edge
+                video.msRequestFullscreen();
+            }
+        }).catch(error => {
+            console.error('Fehler beim Abspielen des Videos:', error);
+        });
+    });
+</script>
 </body>
 </html>
