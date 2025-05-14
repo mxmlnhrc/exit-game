@@ -46,7 +46,7 @@ passwordCheck = salt_string(str(885))
 @app.get("/")
 def read_root(uid: str = Header(default=None)):
     if uid == passwordCheck and check_all_Level():
-        return JSONResponse(content={"message": "Alle Level sind aktiv!"}, status_code=200)
+        return JSONResponse(content={"message": "Alle Level sind aktiv!", "success": True}, status_code=200)
     else:
         return HTTPException(status_code=404, detail="Noch nicht bestanden!")
 

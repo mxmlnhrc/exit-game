@@ -40,6 +40,7 @@
 <script src="validator.js"></script>
 <script src="resources/js/countdown.js"></script>
 <script src="resources/js/morse.js"></script>
+<script src="resources/js/finalValidation.js"></script>
 
 <script>
     document.addEventListener('keydown', function (event) {
@@ -75,6 +76,7 @@
                 }
             })
             .catch(err => console.error('Overlay-Ladefehler:', err));
+        verifyAll()
     }
 
     function closeOverlay() {

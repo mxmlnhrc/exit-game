@@ -2,8 +2,30 @@ let barFinish = false;
 let morseFinish = false;
 let coordsFinish = false;
 
-function verifyAll(barometers) {
-    const storedBarometers = sessionStorage.getItem('barometers');
-    console.log(sendBar(JSON.parse(storedBarometers)))
-    console.log(JSON.parse(storedBarometers))
+function verifyAll() {
+    fetch("resources/static.json")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Fehler beim Laden der URL-Basis");
+            }
+            return response.json();
+        })
+        .then(config => {
+            const url = `${config.url_base}`;
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Fehler beim Senden der Anfrage");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Antwort:", data);
+            if (data.success) {
+                window.location.href = '../EndScene.html';
+            }
+        })
+        .catch(error => {
+            console.error("Fehler:", error);
+        });
 }

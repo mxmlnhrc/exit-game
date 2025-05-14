@@ -120,6 +120,7 @@ function sendCoords() {
                     firstCorrectCoordIn = false;
                     closeOverlay();
                 }
+                verifyAll();
             }
         })
         .catch(error => {

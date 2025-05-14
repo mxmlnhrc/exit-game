@@ -87,6 +87,7 @@ function sendBar(barometers) {
                     firstCorrectBarIn = false;
                     closeOverlay();
                 }
+                verifyAll();
             }
         })
         .catch(error => {
