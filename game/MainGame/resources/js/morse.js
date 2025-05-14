@@ -4,10 +4,12 @@ let morseList = JSON.parse(sessionStorage.getItem('MorseList')) || [];
 
 let isMorseSuccessful = false;
 
-function koordinatenIn(key) {
+function morseIn(key) {
     if (isMorseSuccessful) {
         return;
     }
+
+    console.log(key);
 
     if (key === 'entf') {
         if (morseList) {
