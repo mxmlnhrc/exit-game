@@ -1,31 +1,68 @@
 <!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <title>Fullscreen Video</title>
-</head>
-<body>
-<video id="fullscreenVideo" autoplay muted>
-    <source src="/resources/vids/final_scene.mp4" type="video/mp4">
-</video>
+        <html lang="de">
+        <head>
+            <meta charset="UTF-8">
+            <title>ASCII U-Boot Animation</title>
+            <style>
+                body { background: #001f3f; color: #7FDBFF; font-family: monospace; margin: 0; overflow: hidden;}
+                #asciisub, #waterline {
+                    font-size: 18px;
+                    line-height: 18px;
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    white-space: pre;
+                }
+                #waterline { top: 20%; }
+            </style>
+        </head>
+        <body>
+        <pre id="waterline">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</pre>
+        <pre id="asciisub"></pre>
+        <script>
+        const sub = [
+            "              ___ ",
+            "            /   |",
+            "  ,--------'    '--------..._,.",
+            "(      HERTHA BSC          _--+",
+            " `----------------------''' `",
+        ];
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const video = document.getElementById('fullscreenVideo');
+        const subHeight = sub.length;
+        let windowRows = 0;
+        let waterlineRow = 0;
+        let pos = 0;
 
-        // Starte das Video im Vollbildmodus
-        video.play().then(() => {
-            if (video.requestFullscreen) {
-                video.requestFullscreen();
-            } else if (video.webkitRequestFullscreen) { // Für Safari
-                video.webkitRequestFullscreen();
-            } else if (video.msRequestFullscreen) { // Für IE/Edge
-                video.msRequestFullscreen();
+        function calcRows() {
+            windowRows = Math.floor(window.innerHeight / 18);
+            waterlineRow = Math.floor(windowRows * 0.2); // 20% von oben
+            pos = windowRows - subHeight; // Start: ganz unten
+        }
+
+        function drawSub(pos) {
+            let output = "";
+            for (let i = 0; i < pos; i++) output += "\n";
+            output += sub.join("\n");
+            document.getElementById('asciisub').textContent = output;
+        }
+
+        function animate() {
+            if (pos > waterlineRow - subHeight) {
+                drawSub(pos);
+                pos--;
+                setTimeout(animate, 60);
+            } else {
+                drawSub(pos);
             }
-        }).catch(error => {
-            console.error('Fehler beim Abspielen des Videos:', error);
-        });
-    });
-</script>
-</body>
-</html>
+        }
+
+        function start() {
+            calcRows();
+            animate();
+        }
+
+        window.onload = start;
+        window.onresize = () => location.reload();
+        </script>
+        </body>
+        </html>
