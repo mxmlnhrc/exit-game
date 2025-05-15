@@ -1,68 +1,89 @@
 <!DOCTYPE html>
-        <html lang="de">
-        <head>
-            <meta charset="UTF-8">
-            <title>ASCII U-Boot Animation</title>
-            <style>
-                body { background: #001f3f; color: #7FDBFF; font-family: monospace; margin: 0; overflow: hidden;}
-                #asciisub, #waterline {
-                    font-size: 18px;
-                    line-height: 18px;
-                    position: absolute;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    white-space: pre;
-                }
-                #waterline { top: 20%; }
-            </style>
-        </head>
-        <body>
-        <pre id="waterline">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</pre>
-        <pre id="asciisub"></pre>
-        <script>
-        const sub = [
-            "              ___ ",
-            "            /   |",
-            "  ,--------'    '--------..._,.",
-            "(      HERTHA BSC          _--+",
-            " `----------------------''' `",
-        ];
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>ASCII U-Boot Animation</title>
+<style>
+    body { background: #001f3f; color: #7FDBFF; font-family: monospace; margin: 0; overflow: hidden;}
+    #asciisub, #waterline, #querytext {
+        font-size: 18px;
+        line-height: 18px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: pre;
+    }
+    #waterline { top: 33.33%; }
+    #querytext { top: 0; }
+</style>
+</head>
+<body>
+<pre id="querytext"></pre>
+<pre id="waterline">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</pre>
+<pre id="asciisub"></pre>
+<script>
+const sub = [
+    "              ___ ",
+    "            /   |",
+    " ,--------'    '--------..._,.",
+    "(                         _--+",
+    " `----------------------''' `",
+];
 
-        const subHeight = sub.length;
-        let windowRows = 0;
-        let waterlineRow = 0;
-        let pos = 0;
+const subHeight = sub.length;
+const linesAboveWater = 2;
+let windowRows = 0;
+let waterlineRow = 0;
+let pos = 0;
+let isLost = false;
 
-        function calcRows() {
-            windowRows = Math.floor(window.innerHeight / 18);
-            waterlineRow = Math.floor(windowRows * 0.2); // 20% von oben
-            pos = windowRows - subHeight; // Start: ganz unten
+function getQueryText() {
+    if (!window.location.search) return "";
+    return decodeURIComponent(window.location.search.substring(1));
+}
+
+function calcRows() {
+    windowRows = Math.floor(window.innerHeight / 18);
+    waterlineRow = Math.floor(windowRows * 0.333);
+    pos = windowRows - subHeight;
+    isLost = getQueryText().trim().toLowerCase() === "verloren";
+}
+
+function drawSub(pos) {
+    let output = "";
+    for (let i = 0; i < pos; i++) output += "\n";
+    output += sub.join("\n");
+    document.getElementById('asciisub').textContent = output;
+}
+
+function animate() {
+    if (isLost) {
+        if (pos > waterlineRow) {
+            drawSub(pos);
+            pos--;
+            setTimeout(animate, 60);
+        } else {
+            drawSub(pos);
         }
+        return;
+    }
+    if (pos > waterlineRow - linesAboveWater) {
+        drawSub(pos);
+        pos--;
+        setTimeout(animate, 60);
+    } else {
+        drawSub(pos);
+    }
+}
 
-        function drawSub(pos) {
-            let output = "";
-            for (let i = 0; i < pos; i++) output += "\n";
-            output += sub.join("\n");
-            document.getElementById('asciisub').textContent = output;
-        }
+function start() {
+    calcRows();
+    document.getElementById('querytext').textContent = getQueryText();
+    animate();
+}
 
-        function animate() {
-            if (pos > waterlineRow - subHeight) {
-                drawSub(pos);
-                pos--;
-                setTimeout(animate, 60);
-            } else {
-                drawSub(pos);
-            }
-        }
-
-        function start() {
-            calcRows();
-            animate();
-        }
-
-        window.onload = start;
-        window.onresize = () => location.reload();
-        </script>
-        </body>
-        </html>
+window.onload = start;
+window.onresize = () => location.reload();
+</script>
+</body>
+</html>
