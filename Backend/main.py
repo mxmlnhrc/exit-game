@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 #Eigene Module
-from controller import initialize, salt_string, generate_check_sum, activate_led, blink_cycle
+from controller import salt_string, generate_check_sum, activate_led, blink_cycle, check_all_Level
 
 
 #RaspberryPi Code
@@ -41,13 +41,16 @@ app.add_middleware(
 
 passwordCheck = salt_string(str(885))
 
+
 #Der Hash muss immer als Identifier übergeben werden
-@app.get("/")
+@app.post("/")
 def read_root(uid: str = Header(default=None)):
-    if uid == passwordCheck:
-        return JSONResponse(content={"message": "Willkomen"})
+    all_on = check_all_Level()
+    print(all_on)
+    if uid == passwordCheck and all_on == True:
+        return JSONResponse(content={"success": True}, status_code=200)
     else:
-        return HTTPException(status_code=404, detail="UID ist falsch!")
+        return JSONResponse(content={"success": False}, status_code=400)
 
 @app.post("/check-pw")
 async def check_pw(request: Request):

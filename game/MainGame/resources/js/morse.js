@@ -97,6 +97,7 @@ function sendMorse() {
                     firstCorrectMorseIn = false;
                     closeOverlay();
                 }
+                verifyAll();
             }
         })
         .catch(error => {

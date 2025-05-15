@@ -34,6 +34,9 @@ blink_time = {
 # Morse code [1, 7, 9, 3]
 morse_num = [['long', 'short', 'short', 'short'], ['short', 'short', 'short', 'long'], ['short', 'long', 'long', 'short'], ['long', 'long', 'long', 'short']]
 
+global led_13_on
+led_13_on = False
+
 def blink_cycle():
     """Endlos-Blinken in eigenem Thread"""
     try:
@@ -41,6 +44,9 @@ def blink_cycle():
             for number in morse_num:
                 for part in number:
                     if getattr(threading.current_thread(), "stop", False):
+                        global led_13_on
+                        led_13_on = True
+                        activate_led(13)
                         break
                     GPIO.output(13, GPIO.HIGH)
                     time.sleep(blink_time[part])
@@ -50,3 +56,12 @@ def blink_cycle():
     except Exception:
         pass  # Thread wird mit Hauptprogramm beendet
 
+
+def check_all_Level():
+    # Hier wird überprüft, ob alle Level aktiv sind
+    if GPIO.input(13) == GPIO.HIGH and led_13_on == True and GPIO.input(12) == GPIO.HIGH and GPIO.input(18) == GPIO.HIGH:
+        print("All Level On")
+        return True
+    else:
+        print("Not all Level On")
+        return False
