@@ -15,7 +15,7 @@ function startCountdown() {
         if (countdownTime < 0) {
             clearInterval(interval);
             countdownElement.textContent = "00:00";
-            window.location.href = '/MainGame/EndScene.html?Verloren';
+            window.location.href = '/MainGame/EndCutScene.html?Verloren';
         }
     }, 1000);
 }

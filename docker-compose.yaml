@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    image: nginx:alpine
+    container_name: static-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./game:/usr/share/nginx/html:ro
+    restart: always
