@@ -29,7 +29,7 @@ function verifyAll() {
         })
         .then(data => {
             if (data.success) {
-                window.location.href = '/MainGame/EndScene.html';
+                window.location.href = '/MainGame/EndScene.html?Gewonnen';
             }
         })
         .catch(error => {
