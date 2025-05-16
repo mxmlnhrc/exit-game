@@ -29,6 +29,7 @@ blink_time = {
     'long' : 1.5,
     'pause_short' : 0.5,
     'pause_long' : 2,
+    'pause_block': 3,
 }
 
 # Morse code [1, 7, 9, 3]
@@ -53,6 +54,7 @@ def blink_cycle():
                     GPIO.output(13, GPIO.LOW)
                     time.sleep(blink_time['pause_short'])
                 time.sleep(blink_time['pause_long'])
+            time.sleep(blink_time['pause_block'])
     except Exception:
         pass  # Thread wird mit Hauptprogramm beendet
 
