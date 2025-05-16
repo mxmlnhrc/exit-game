@@ -1,7 +1,7 @@
 const coms = {
     story:
 `Dein U-Boot fängt ab zu sinken. Du bist als einziger noch bei Bewusstsein.
-Du hast zwanzig Minuten Zeit um das dich und deine Crew sicher an die Oberfläche zu bringen.
+Du hast zwanzig Minuten Zeit, um dich und deine Crew sicher an die Oberfläche zu bringen.
 Aber wo fängst du an? Am besten Logst du dich zunächst in das Interface ein und siehst ob dir dann etwas bekannt vorkommt.
 
  __      ___      _   ______       __      _       
@@ -49,7 +49,7 @@ Capt.> ~ „Neue Meeresformationen wurden identifiziert – Daten werden protoko
 Sys.err.log$START>>>    <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>
                         |           „Anomalie erkannt:                   |
                         |   Datenabweichung um fünf                      |
-                        |            Einheiten rückwärts.                |
+                        |            Einheiten verschoben.               |
                         |   Anfangszeichen der letzten Berichte könnten  |    
                         |           entscheidend sein.“                  |
                         <~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~>  <<<Sys.err.log$END
